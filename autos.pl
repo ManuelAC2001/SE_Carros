@@ -65,10 +65,15 @@ numero_puertas(carroceria("NA", sedan), 4) :-
 
 % MAZDA MX-5 NA CONVERTIBLE 1989 4 PUERTAS AUTOMATICO
 transmision("NA", automatico) :-
-    numero_puertas(carroceria("NA", convertible),  X),
+    Carroceria = carroceria("NA", convertible),
+
+    numero_puertas(Carroceria, X),
     write("Numero de puertas: "), write(X), nl.
 
 transmision("NA", automatico) :-
-    numero_puertas(carroceria("NA", sedan),  X),
+    Carroceria = carroceria("NA", sedan),
+
+    numero_puertas(Carroceria, X),
     write("Numero de puertas: "), write(X), nl.
+
 
