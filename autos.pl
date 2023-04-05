@@ -62,5 +62,3 @@ numero_puertas(4, "NA") :-
     write("Modelo: "), write(Y), nl,
     write("Carroceria: "), write(sedan), nl,
     write("Anio de fabricacion: "), write(Z), nl.
-
-transmision().
