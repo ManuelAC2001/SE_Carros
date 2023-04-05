@@ -23,7 +23,7 @@ carroceria("NB",convertible).
 carroceria("NC",convertible).
 
 % numero de puertas que tiene cada generacion dependiendo de su carroceria
-numero_puertas("NA", 2) :-
+numero_puertas("NA", convertible, 2) :-
     modelo(X, Y),
     generacion(Y, "NA"),
     anioFabricacion("NA", Z),
@@ -37,7 +37,7 @@ numero_puertas("NA", 2) :-
     write("Anio de fabricacion: "), write(Z), nl.
 
 
-numero_puertas("NB", 2) :-
+numero_puertas("NB", convertible, 2) :-
     modelo(X, Y),
     generacion(Y, "NB"),
     anioFabricacion("NB", Z),
@@ -50,7 +50,7 @@ numero_puertas("NB", 2) :-
     write("Carroceria: "), write(convertible), nl,
     write("Anio de fabricacion: "), write(Z), nl.
 
-numero_puertas("NA", 4) :-
+numero_puertas("NA", sedan, 4) :-
     modelo(X, Y),
     generacion(Y, "NA"),
     anioFabricacion("NA", Z),
@@ -62,3 +62,13 @@ numero_puertas("NA", 4) :-
     write("Modelo: "), write(Y), nl,
     write("Carroceria: "), write(sedan), nl,
     write("Anio de fabricacion: "), write(Z), nl.
+
+% MAZDA MX-5 NA CONVERTIBLE 1989 4 PUERTAS AUTOMATICO
+transmision("NA", automatico) :-
+    numero_puertas("NA", convertible,  X),
+    write("Numero de puertas: "), write(X), nl.
+
+transmision("NA", automatico) :-
+    numero_puertas("NA", sedan,  X),
+    write("Numero de puertas: "), write(X), nl.
+
