@@ -23,7 +23,7 @@ carroceria("NB",convertible).
 carroceria("NC",convertible).
 
 % numero de puertas que tiene cada generacion dependiendo de su carroceria
-numero_puertas(carroceria("ANAAAAL", convertible), 2) :-
+numero_puertas(carroceria("NA", convertible), 2) :-
     modelo(X, Y),
     generacion(Y, "NA"),
     anioFabricacion("NA", Z),
