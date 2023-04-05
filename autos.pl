@@ -24,10 +24,13 @@ carroceria("NC",convertible).
 
 % numero de puertas que tiene cada generacion dependiendo de su carroceria
 numero_puertas(carroceria("NA", convertible), 2) :-
+    Generacion = "NA",
+    Carroceria = convertible,
+
     modelo(X, Y),
-    generacion(Y, "NA"),
-    anioFabricacion("NA", Z),
-    carroceria("NA", convertible),
+    generacion(Y, Generacion),
+    anioFabricacion(Generacion, Z),
+    carroceria(Generacion, Carroceria),
 
     % verificion de la informacion relacionada
     write("Informacion del carro: "), nl,
@@ -38,10 +41,13 @@ numero_puertas(carroceria("NA", convertible), 2) :-
 
 
 numero_puertas(carroceria("NB", convertible), 2) :-
+    Generacion = "NB",
+    Carroceria = convertible,
+
     modelo(X, Y),
-    generacion(Y, "NB"),
-    anioFabricacion("NB", Z),
-    carroceria("NB", convertible),
+    generacion(Y, Generacion),
+    anioFabricacion(Generacion, Z),
+    carroceria(Generacion, Carroceria),
 
     % verificion de la informacion relacionada
     write("Informacion del carro: "), nl,
@@ -51,10 +57,13 @@ numero_puertas(carroceria("NB", convertible), 2) :-
     write("Anio de fabricacion: "), write(Z), nl.
 
 numero_puertas(carroceria("NA", sedan), 4) :-
+    Generacion = "NA",
+    Carroceria = sedan,
+
     modelo(X, Y),
-    generacion(Y, "NA"),
-    anioFabricacion("NA", Z),
-    carroceria("NA", sedan),
+    generacion(Y, Generacion),
+    anioFabricacion(Generacion, Z),
+    carroceria(Generacion, Carroceria),
 
     % verificion de la informacion relacionada    
     write("Informacion del carro: "), nl,
