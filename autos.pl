@@ -53,7 +53,7 @@ numero_puertas(carroceria("NB", convertible), 2) :-
     write("Informacion del carro: "), nl,
     write("Marca: "), write(X), nl,
     write("Modelo: "), write(Y), nl,
-    write("Carroceria: "), write(convertible), nl,
+    write("Carroceria: "), write(Carroceria), nl,
     write("Anio de fabricacion: "), write(Z), nl.
 
 numero_puertas(carroceria("NA", sedan), 4) :-
@@ -69,18 +69,40 @@ numero_puertas(carroceria("NA", sedan), 4) :-
     write("Informacion del carro: "), nl,
     write("Marca: "), write(X), nl,
     write("Modelo: "), write(Y), nl,
-    write("Carroceria: "), write(sedan), nl,
+    write("Carroceria: "), write(Carroceria), nl,
+    write("Anio de fabricacion: "), write(Z), nl.
+
+numero_puertas(carroceria("NC", convertible), 2) :-
+    Generacion = "NC",
+    Carroceria = convertible,
+
+    modelo(X, Y),
+    generacion(Y, Generacion),
+    anioFabricacion(Generacion, Z),
+    carroceria(Generacion, Carroceria),
+
+    % verificion de la informacion relacionada    
+    write("Informacion del carro: "), nl,
+    write("Marca: "), write(X), nl,
+    write("Modelo: "), write(Y), nl,
+    write("Carroceria: "), write(Carroceria), nl,
     write("Anio de fabricacion: "), write(Z), nl.
 
 % MAZDA MX-5 NA CONVERTIBLE 1989 4 PUERTAS AUTOMATICO
-transmision("NA", automatico) :-
+transmision(carroceria("NA", convertible), automatico) :-
     Carroceria = carroceria("NA", convertible),
 
     numero_puertas(Carroceria, X),
     write("Numero de puertas: "), write(X), nl.
 
-transmision("NA", automatico) :-
+transmision(carroceria("NA", sedan), automatico) :-
     Carroceria = carroceria("NA", sedan),
+
+    numero_puertas(Carroceria, X),
+    write("Numero de puertas: "), write(X), nl.
+
+transmision(carroceria("NC", convertible), estandar) :-
+    Carroceria = carroceria("NC", convertible),
 
     numero_puertas(Carroceria, X),
     write("Numero de puertas: "), write(X), nl.
