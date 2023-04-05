@@ -15,15 +15,15 @@ anioFabricacion("NB", 2005).
 anioFabricacion("NC", 2005).
 
 % carroceria de las generaciones del modelo mx-5
-carroceria("NA",    convertible).
+carroceria("NA",convertible).
 carroceria("NA",sedan).
 carroceria("NA",hatchback).
+
 carroceria("NB",convertible).
 carroceria("NC",convertible).
 
-
-
-numero_puertas(2, "NA") :-
+% numero de puertas que tiene cada generacion dependiendo de su carroceria
+numero_puertas("NA", 2) :-
     modelo(X, Y),
     generacion(Y, "NA"),
     anioFabricacion("NA", Z),
@@ -37,7 +37,7 @@ numero_puertas(2, "NA") :-
     write("Anio de fabricacion: "), write(Z), nl.
 
 
-numero_puertas(2, "NB") :-
+numero_puertas("NB", 2) :-
     modelo(X, Y),
     generacion(Y, "NB"),
     anioFabricacion("NB", Z),
@@ -50,7 +50,7 @@ numero_puertas(2, "NB") :-
     write("Carroceria: "), write(convertible), nl,
     write("Anio de fabricacion: "), write(Z), nl.
 
-numero_puertas(4, "NA") :-
+numero_puertas("NA", 4) :-
     modelo(X, Y),
     generacion(Y, "NA"),
     anioFabricacion("NA", Z),
