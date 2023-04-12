@@ -94,9 +94,11 @@ transmision(carroceria("NA", convertible),  estandar).
 
 
 combustible(carroceria("NA", convertible), gasolina):-
+
     Carroceria = carroceria("NA", convertible),
     Transmision = automatico,
 
     transmision(Carroceria,  Transmision),
     numero_puertas(Carroceria, X),
+    write("Transmision: "), write(Transmision), nl,
     write("Numero de puertas: "), write(X), nl.
