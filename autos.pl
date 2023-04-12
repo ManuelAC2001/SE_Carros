@@ -36,7 +36,7 @@ numero_puertas(carroceria("NA", convertible), 2) :-
     write("Informacion del carro: "), nl,
     write("Marca: "), write(X), nl,
     write("Modelo: "), write(Y), nl,
-    write("Carroceria: "), write(convertible), nl,
+    write("Carroceria: "), write(Carroceria), nl,
     write("Anio de fabricacion: "), write(Z), nl.
 
 
@@ -88,23 +88,15 @@ numero_puertas(carroceria("NC", convertible), 2) :-
     write("Carroceria: "), write(Carroceria), nl,
     write("Anio de fabricacion: "), write(Z), nl.
 
-% MAZDA MX-5 NA CONVERTIBLE 1989 4 PUERTAS AUTOMATICO
-transmision(carroceria("NA", convertible), automatico) :-
+transmision(carroceria("NA", convertible),  automatico).
+transmision(carroceria("NA", sedan),        automatico). 
+transmision(carroceria("NA", convertible),  estandar).
+
+
+combustible(carroceria("NA", convertible), gasolina):-
     Carroceria = carroceria("NA", convertible),
+    Transmision = automatico,
 
+    transmision(Carroceria,  Transmision),
     numero_puertas(Carroceria, X),
     write("Numero de puertas: "), write(X), nl.
-
-transmision(carroceria("NA", sedan), automatico) :-
-    Carroceria = carroceria("NA", sedan),
-
-    numero_puertas(Carroceria, X),
-    write("Numero de puertas: "), write(X), nl.
-
-transmision(carroceria("NC", convertible), estandar) :-
-    Carroceria = carroceria("NC", convertible),
-
-    numero_puertas(Carroceria, X),
-    write("Numero de puertas: "), write(X), nl.
-
-
