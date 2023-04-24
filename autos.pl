@@ -15,90 +15,45 @@ anioFabricacion("NB", 2005).
 anioFabricacion("NC", 2005).
 
 % carroceria de las generaciones del modelo mx-5
-carroceria("NA",convertible).
-carroceria("NA",sedan).
-carroceria("NA",hatchback).
+carroceria("NA", convertible).
+carroceria("NA", sedan).
+carroceria("NA", hatchback).
 
 carroceria("NB",convertible).
 carroceria("NC",convertible).
 
 % numero de puertas que tiene cada generacion dependiendo de su carroceria
-numero_puertas(carroceria("NA", convertible), 2) :-
-    Generacion = "NA",
-    Carroceria = convertible,
-
-    modelo(X, Y),
-    generacion(Y, Generacion),
-    anioFabricacion(Generacion, Z),
-    carroceria(Generacion, Carroceria),
-
-    % verificion de la informacion relacionada
-    write("Informacion del carro: "), nl,
-    write("Marca: "), write(X), nl,
-    write("Modelo: "), write(Y), nl,
-    write("Carroceria: "), write(Carroceria), nl,
-    write("Anio de fabricacion: "), write(Z), nl.
-
-
-numero_puertas(carroceria("NB", convertible), 2) :-
-    Generacion = "NB",
-    Carroceria = convertible,
-
-    modelo(X, Y),
-    generacion(Y, Generacion),
-    anioFabricacion(Generacion, Z),
-    carroceria(Generacion, Carroceria),
-
-    % verificion de la informacion relacionada
-    write("Informacion del carro: "), nl,
-    write("Marca: "), write(X), nl,
-    write("Modelo: "), write(Y), nl,
-    write("Carroceria: "), write(Carroceria), nl,
-    write("Anio de fabricacion: "), write(Z), nl.
-
-numero_puertas(carroceria("NA", sedan), 4) :-
-    Generacion = "NA",
-    Carroceria = sedan,
-
-    modelo(X, Y),
-    generacion(Y, Generacion),
-    anioFabricacion(Generacion, Z),
-    carroceria(Generacion, Carroceria),
-
-    % verificion de la informacion relacionada    
-    write("Informacion del carro: "), nl,
-    write("Marca: "), write(X), nl,
-    write("Modelo: "), write(Y), nl,
-    write("Carroceria: "), write(Carroceria), nl,
-    write("Anio de fabricacion: "), write(Z), nl.
-
-numero_puertas(carroceria("NC", convertible), 2) :-
-    Generacion = "NC",
-    Carroceria = convertible,
-
-    modelo(X, Y),
-    generacion(Y, Generacion),
-    anioFabricacion(Generacion, Z),
-    carroceria(Generacion, Carroceria),
-
-    % verificion de la informacion relacionada    
-    write("Informacion del carro: "), nl,
-    write("Marca: "), write(X), nl,
-    write("Modelo: "), write(Y), nl,
-    write("Carroceria: "), write(Carroceria), nl,
-    write("Anio de fabricacion: "), write(Z), nl.
+numero_puertas(carroceria("NA", convertible), 2).
+numero_puertas(carroceria("NB", convertible), 2).
+numero_puertas(carroceria("NA", sedan), 4).
+numero_puertas(carroceria("NC", convertible), 2). 
 
 transmision(carroceria("NA", convertible),  automatico).
 transmision(carroceria("NA", sedan),        automatico). 
 transmision(carroceria("NA", convertible),  estandar).
 
+combustible(carroceria("NA", convertible), gasolina).
 
-combustible(carroceria("NA", convertible), gasolina):-
 
-    Carroceria = carroceria("NA", convertible),
-    Transmision = automatico,
+carro(carroceria("NA", convertible)):-
 
-    transmision(Carroceria,  Transmision),
-    numero_puertas(Carroceria, X),
+    Generacion = "NA",
+    Carroceria = convertible,
+    
+    marca(Marca),
+    modelo(Marca, Modelo),
+    generacion(Modelo, Generacion),
+    anioFabricacion(Generacion, Anio),
+    carroceria(Generacion, Carroceria),
+    numero_puertas(carroceria(Generacion, Carroceria), Numero_Puertas),
+    transmision(carroceria(Generacion, Carroceria),  Transmision),
+    combustible(carroceria(Generacion, Carroceria), Combustible),
+
+    % comprobacion de la informacion
+    write("Marca: "), write(Marca), nl,
+    write("Modelo: "), write(Modelo), nl,
+    write("Anio: "), write(Anio), nl,
+    write("Carroceria: "), write(Carroceria), nl,
+    write("Numero_Puertas: "), write(Numero_Puertas), nl,
     write("Transmision: "), write(Transmision), nl,
-    write("Numero de puertas: "), write(X), nl.
+    write("Combustible: "), write(Combustible), nl.
