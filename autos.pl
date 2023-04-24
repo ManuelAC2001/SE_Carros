@@ -48,7 +48,8 @@ precio(carroceria("NA", convertible), 1500):-
     transmision(carroceria(Generacion, Carroceria),  Transmision),
     combustible(carroceria(Generacion, Carroceria), Combustible),
 
-    % El precio del carro sera de $1500 si cumplen con estas caracteristicas dentro del modelo del carro
+    % El precio del carro sera de $1500 si 
+    % cumplen con estas caracteristicas dentro del modelo del carro
     Transmision == estandar,
     Combustible == gasolina,
 
@@ -60,26 +61,3 @@ precio(carroceria("NA", convertible), 1500):-
     write("Numero_Puertas: "), write(Numero_Puertas), nl,
     write("Transmision: "), write(Transmision), nl,
     write("Combustible: "), write(Combustible), nl.
-
-% carro(carroceria("NA", convertible)):-
-
-    % Generacion = "NA",
-    % Carroceria = convertible,
-    
-    % marca(Marca),
-    % modelo(Marca, Modelo),
-    % generacion(Modelo, Generacion),
-    % anioFabricacion(Generacion, Anio),
-    % carroceria(Generacion, Carroceria),
-    % numero_puertas(carroceria(Generacion, Carroceria), Numero_Puertas),
-    % transmision(carroceria(Generacion, Carroceria),  Transmision),
-    % combustible(carroceria(Generacion, Carroceria), Combustible),
-
-    % % comprobacion de la informacion
-    % write("Marca: "), write(Marca), nl,
-    % write("Modelo: "), write(Modelo), nl,
-    % write("Anio: "), write(Anio), nl,
-    % write("Carroceria: "), write(Carroceria), nl,
-    % write("Numero_Puertas: "), write(Numero_Puertas), nl,
-    % write("Transmision: "), write(Transmision), nl,
-    % write("Combustible: "), write(Combustible), nl.
