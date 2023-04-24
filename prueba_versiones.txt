@@ -1,0 +1,33 @@
+combustible(carroceria("NA", convertible), gasolina). 
+
+Informacion del carro:
+Marca: mazda
+Modelo: mx-5
+Carroceria: convertible
+Anio de fabricacion: 1989
+Transmision: automatico
+Numero de puertas: 2
+
+
+Carro(carroceria("NA", convertible)).
+
+Informacion del carro:
+Marca: mazda
+Modelo: mx-5
+Anio de fabricacion: 1989
+Carroceria: convertible
+Numero de puertas: 2
+Transmision: automatico
+Combustible: gasolina
+
+Informacion del carro:
+Marca: mazda
+Modelo: mx-5
+Anio de fabricacion: 1989
+Carroceria: convertible
+Numero de puertas: 2
+Transmision: estandar
+Combustible: gasolina
+
+
+
