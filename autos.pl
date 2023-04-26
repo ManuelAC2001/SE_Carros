@@ -33,4 +33,3 @@ transmision(carroceria("NA", sedan),        automatico).
 transmision(carroceria("NA", convertible),  estandar).
 
 combustible(carroceria("NA", convertible), gasolina).
-
