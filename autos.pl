@@ -18,7 +18,6 @@ anioFabricacion("NC", 2005).
 carroceria("NA", convertible).
 carroceria("NA", sedan).
 carroceria("NA", hatchback).
-
 carroceria("NB",convertible).
 carroceria("NC",convertible).
 
@@ -28,9 +27,13 @@ numero_puertas(carroceria("NB", convertible), 2).
 numero_puertas(carroceria("NA", sedan), 4).
 numero_puertas(carroceria("NC", convertible), 2). 
 
+
 transmision(carroceria("NA", convertible),  automatico).
 transmision(carroceria("NA", sedan),        automatico). 
 transmision(carroceria("NA", convertible),  estandar).
 
+
 combustible(carroceria("NA", convertible), gasolina).
 
+
+precioCarroceria(carroceria("NA", convertible), 1500).
