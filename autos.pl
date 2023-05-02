@@ -70,10 +70,7 @@ calcularPrecio(Generacion, TipoCarroceria):-
 
     PrecioFinal is PrecioInicial + PrecioTransmision,
 
-
-    write("Precio: "), write(PrecioInicial), nl,
+    write("Precio: "), write(PrecioFinal), nl,
     write("Combustible: "), write(Combustible), nl,
-    write("Transmision: "), write(TipoTransmision), nl,
-    write("PrecioFinal: "), write(PrecioFinal), nl.
-
+    write("Transmision: "), write(TipoTransmision), nl.
     
