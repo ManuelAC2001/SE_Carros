@@ -38,8 +38,6 @@ combustible(carroceria("NA", convertible), gasolina).
 
 precioCarroceria(carroceria("NA", convertible), 1500).
 
-% precioTransmision(estandar, 2500).
-% precioTransmision(automatico, 5000).
 
 precioTransmision(
     transmision(carroceria("NA", convertible),  estandar),
@@ -51,23 +49,29 @@ precioTransmision(
     5000
 ).
 
-% metodo para calcular el precio del carro
+
+precioCombustible(
+    combustible(carroceria("NA", convertible), gasolina),
+    4750
+).
+
+% regla para calcular el precio del carro
 % de acuerdo a las variacines de combustible y transmision
-calcularPrecio(Generacion, TipoCarroceria):- 
+calcularPrecio(Generacion, TipoCarroceria, PrecioCalculado):- 
     Carroceria = carroceria(Generacion, TipoCarroceria),
     Transmision = transmision(Carroceria, TipoTransmision),
+    Combustible = combustible(Carroceria, TipoCombustible),
 
     carroceria(Generacion, TipoCarroceria), 
-
-    combustible(Carroceria, Combustible),
     transmision(Carroceria, TipoTransmision),
+    combustible(Carroceria, TipoCombustible),
+
     precioCarroceria(Carroceria, PrecioInicial),
-
     precioTransmision(Transmision, PrecioTransmision),
+    precioCombustible(Combustible, PrecioCombustible),
 
-    PrecioFinal is PrecioInicial + PrecioTransmision,
-
-    write("Precio: "), write(PrecioFinal), nl,
-    write("Combustible: "), write(Combustible), nl,
-    write("Transmision: "), write(TipoTransmision), nl.
-    
+    PrecioCalculado is (
+        PrecioInicial + 
+        PrecioTransmision +
+        PrecioCombustible
+    ).
