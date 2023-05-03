@@ -38,11 +38,8 @@ combustible(carroceria("NA", convertible), gasolina).
 
 precioCarroceria(carroceria("NA", convertible), 1500).
 
-
 % precioTransmision(estandar, 2500).
 % precioTransmision(automatico, 5000).
-
-
 
 precioTransmision(
     transmision(carroceria("NA", convertible),  estandar),
