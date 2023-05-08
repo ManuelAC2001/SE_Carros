@@ -119,7 +119,5 @@ describirCarro(Caracteristicas):-
 % método de prueba para buscar el auto de acuerdo a una caracteristica
 findBy(X):-
     describirCarro(Caracteristicas),
-    nth0(6, Caracteristicas, Z),
-
-    X == Z,
+    nth0(6, Caracteristicas, X),
     writeln(Caracteristicas).
