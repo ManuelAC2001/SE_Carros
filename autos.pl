@@ -1,3 +1,5 @@
+% INICIO DE LA BASE DE CONOCIMIENTOS
+
 % marcas disponibles
 marca(mazda).
 
@@ -109,4 +111,16 @@ describirCarro(Caracteristicas):-
     calcularPrecio(CarroCaracteristicas, Precio),
     append(CarroCaracteristicas, [Precio], Caracteristicas).
 
+% FIN DE LA BASE DE CONOCIMIENTOS
+
+
+% INCIO DEL MOTOR DE INFERENCIA
+
+% método de prueba para buscar el auto de acuerdo a una caracteristica
+findBy(X):-
+    describirCarro(Caracteristicas),
+    nth0(6, Caracteristicas, Z),
+
+    X == Z,
+    writeln(Caracteristicas).
 
