@@ -12,25 +12,32 @@ generacion(mx-5, "NC").
 % anio de fabricacion del modelo mx-5
 anioFabricacion("NA", 1989).
 anioFabricacion("NB", 2005).
-anioFabricacion("NC", 2005).
+anioFabricacion("NC", 2015).
 
 % carroceria de las generaciones del modelo mx-5
 carroceria("NA", convertible).
 carroceria("NA", sedan).
 carroceria("NA", hatchback).
+
 carroceria("NB",convertible).
+
 carroceria("NC",convertible).
 
 % numero de puertas que tiene cada generacion dependiendo de su carroceria
 numero_puertas(carroceria("NA", convertible), 2).
-numero_puertas(carroceria("NB", convertible), 2).
 numero_puertas(carroceria("NA", sedan), 4).
+
+numero_puertas(carroceria("NB", convertible), 2).
+
 numero_puertas(carroceria("NC", convertible), 2). 
 
 
 transmision(carroceria("NA", convertible),  automatico).
 transmision(carroceria("NA", sedan),        automatico). 
 transmision(carroceria("NA", convertible),  estandar).
+
+transmision(carroceria("NB", convertible),  estandar).
+transmision(carroceria("NC", convertible),  estandar).
 
 
 combustible(carroceria("NA", convertible), gasolina).
@@ -56,7 +63,7 @@ precioCombustible(
 ).
 
 % regla para calcular el precio del carro
-% de acuerdo a las variacines de combustible y transmision
+% de acuerdo a las variacines de carroceria, combustible y transmision
 calcularPrecio(Generacion, TipoCarroceria, PrecioCalculado):- 
     Carroceria = carroceria(Generacion, TipoCarroceria),
     Transmision = transmision(Carroceria, TipoTransmision),
@@ -75,3 +82,21 @@ calcularPrecio(Generacion, TipoCarroceria, PrecioCalculado):-
         PrecioTransmision +
         PrecioCombustible
     ).
+
+
+describirCarros:-
+    marca(X),
+    modelo(X, Y),
+    generacion(Y, Z),
+    anioFabricacion(Z, A),
+    carroceria(Z, B),
+    numero_puertas(carroceria(Z, B), C),
+    transmision(carroceria(Z, B), D),
+
+    write("Marca: "), write(X), nl,
+    write("Modelo: "), write(Y), nl,
+    write("Generacion: "), write(Z), nl,
+    write("Anio Fabricacion: "), write(A), nl,
+    write("Carroceria: "), write(B), nl,
+    write("Numero de puertas: "), write(C), nl,
+    write("Transmision: "), write(D), nl.
