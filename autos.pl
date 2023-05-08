@@ -123,4 +123,3 @@ findBy(X):-
 
     X == Z,
     writeln(Caracteristicas).
-
