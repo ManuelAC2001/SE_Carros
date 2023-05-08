@@ -62,20 +62,21 @@ precioCombustible(
     4750
 ).
 
-% regla para calcular el precio del carro
-% de acuerdo a las variacines de carroceria, combustible y transmision
-calcularPrecio(Generacion, TipoCarroceria, PrecioCalculado):- 
-    Carroceria = carroceria(Generacion, TipoCarroceria),
-    Transmision = transmision(Carroceria, TipoTransmision),
-    Combustible = combustible(Carroceria, TipoCombustible),
+calcularPrecio(Caracteristicas, PrecioCalculado):- 
 
-    carroceria(Generacion, TipoCarroceria), 
-    transmision(Carroceria, TipoTransmision),
-    combustible(Carroceria, TipoCombustible),
+    % Leer indices del arreglo de Caracteristicas
+    nth0(2, Caracteristicas, Generacion),
+    nth0(4, Caracteristicas, Carroceria),
+    nth0(6, Caracteristicas, Transmision),
+    nth0(7, Caracteristicas, Combustible),
 
-    precioCarroceria(Carroceria, PrecioInicial),
-    precioTransmision(Transmision, PrecioTransmision),
-    precioCombustible(Combustible, PrecioCombustible),
+    carroceria(Generacion, Carroceria), 
+    transmision(carroceria(Generacion, Carroceria), Transmision),
+    combustible(carroceria(Generacion, Carroceria), Combustible),
+
+    precioCarroceria(carroceria(Generacion, Carroceria), PrecioInicial),
+    precioTransmision(transmision(carroceria(Generacion, Carroceria), Transmision), PrecioTransmision),
+    precioCombustible(combustible(carroceria(Generacion, Carroceria), Combustible), PrecioCombustible),
 
     PrecioCalculado is (
         PrecioInicial + 
@@ -84,19 +85,28 @@ calcularPrecio(Generacion, TipoCarroceria, PrecioCalculado):-
     ).
 
 
-describirCarros:-
-    marca(X),
-    modelo(X, Y),
-    generacion(Y, Z),
-    anioFabricacion(Z, A),
-    carroceria(Z, B),
-    numero_puertas(carroceria(Z, B), C),
-    transmision(carroceria(Z, B), D),
+describirCarro(Caracteristicas):-
+    marca(Marca),
+    modelo(Marca, Modelo),
+    generacion(Modelo, Generacion),
+    anioFabricacion(Generacion, Anio),
+    carroceria(Generacion, Carroceria),
+    numero_puertas(carroceria(Generacion, Carroceria), NumeroPuertas),
+    transmision(carroceria(Generacion, Carroceria), Transmision),
+    combustible(carroceria(Generacion, Carroceria), Combustible),
 
-    write("Marca: "), write(X), nl,
-    write("Modelo: "), write(Y), nl,
-    write("Generacion: "), write(Z), nl,
-    write("Anio Fabricacion: "), write(A), nl,
-    write("Carroceria: "), write(B), nl,
-    write("Numero de puertas: "), write(C), nl,
-    write("Transmision: "), write(D), nl.
+    CarroCaracteristicas = [
+        Marca,
+        Modelo,
+        Generacion,
+        Anio,
+        Carroceria,
+        NumeroPuertas,
+        Transmision,
+        Combustible
+    ],
+
+    calcularPrecio(CarroCaracteristicas, Precio),
+    append(CarroCaracteristicas, [Precio], Caracteristicas).
+
+
