@@ -97,7 +97,7 @@ describirCarro(Caracteristicas):-
     transmision(carroceria(Generacion, Carroceria), Transmision),
     combustible(carroceria(Generacion, Carroceria), Combustible),
 
-    CarroCaracteristicas = [
+    ListaCaracteristicas = [
         Marca,
         Modelo,
         Generacion,
@@ -108,16 +108,45 @@ describirCarro(Caracteristicas):-
         Combustible
     ],
 
-    calcularPrecio(CarroCaracteristicas, Precio),
-    append(CarroCaracteristicas, [Precio], Caracteristicas).
+    calcularPrecio(ListaCaracteristicas, Precio),
+    append(ListaCaracteristicas, [Precio], Caracteristicas).
 
 % FIN DE LA BASE DE CONOCIMIENTOS
 
 
 % INCIO DEL MOTOR DE INFERENCIA
 
-% método de prueba para buscar el auto de acuerdo a una caracteristica
-findBy(X):-
+% método para buscar un carro de acuerdo a la caracteristica seleccionada
+% regla que funciona como helper para realizar el menu de opciones del usuario
+buscarCarro(X, Propiedad):-
     describirCarro(Caracteristicas),
-    nth0(6, Caracteristicas, X),
+
+    (
+        Propiedad == "marca" -> 
+            nth0(0, Caracteristicas, X);
+
+        Propiedad == "modelo" -> 
+            nth0(1, Caracteristicas, X);
+
+        Propiedad == "generacion" -> 
+            nth0(2, Caracteristicas, X);
+
+        Propiedad == "anio" -> 
+            nth0(3, Caracteristicas, X);
+        
+        Propiedad == "carroceria" -> 
+            nth0(4, Caracteristicas, X);
+
+        Propiedad == "numero de puertas" -> 
+            nth0(5, Caracteristicas, X);
+        
+        Propiedad == "transmision" -> 
+            nth0(6, Caracteristicas, X);
+        
+        Propiedad == "combustible" -> 
+            nth0(7, Caracteristicas, X);
+
+        Propiedad == "precio" -> 
+            nth0(8, Caracteristicas, X)
+    ),
     writeln(Caracteristicas).
