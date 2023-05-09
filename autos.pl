@@ -95,7 +95,7 @@ describirCarro(Caracteristicas):-
     transmision(carroceria(Generacion, Carroceria), Transmision),
     combustible(carroceria(Generacion, Carroceria), Combustible),
 
-    CarroCaracteristicas = [
+    ListaCaracteristicas = [
         Marca,
         Modelo,
         Generacion,
@@ -106,18 +106,88 @@ describirCarro(Caracteristicas):-
         Combustible
     ],
 
-    calcularPrecio(CarroCaracteristicas, Precio),
-    append(CarroCaracteristicas, [Precio], Caracteristicas).
+    calcularPrecio(ListaCaracteristicas, Precio),
+    append(ListaCaracteristicas, [Precio], Caracteristicas).
 
 % FIN DE LA BASE DE CONOCIMIENTOS
 
 
 % INCIO DEL MOTOR DE INFERENCIA
 
-% método de prueba para buscar el auto de acuerdo a una caracteristica
-findBy(X):-
-    describirCarro(Caracteristicas),
-    nth0(6, Caracteristicas, Z),
+% método para buscar un carro de acuerdo a la caracteristica seleccionada
+% regla que funciona como helper para realizar el menu de opciones del usuario
+buscarCarro(Nombre, Propiedad, Caracteristicas):-
 
-    X == Z,
-    writeln(Caracteristicas).
+    describirCarro(ListaCaracteristicas),
+
+    (
+        Propiedad == "marca" -> 
+            nth0(0, ListaCaracteristicas, Nombre);
+
+        Propiedad == "modelo" -> 
+            nth0(1, ListaCaracteristicas, Nombre);
+
+        Propiedad == "generacion" -> 
+            nth0(2, ListaCaracteristicas, Nombre);
+
+        Propiedad == "anio" -> 
+            nth0(3, ListaCaracteristicas, Nombre);
+        
+        Propiedad == "carroceria" -> 
+            nth0(4, ListaCaracteristicas, Nombre);
+
+        Propiedad == "numero de puertas" -> 
+            nth0(5, ListaCaracteristicas, Nombre);
+        
+        Propiedad == "transmision" -> 
+            nth0(6, ListaCaracteristicas, Nombre);
+        
+        Propiedad == "combustible" -> 
+            nth0(7, ListaCaracteristicas, Nombre);
+
+        Propiedad == "precio" -> 
+            nth0(8, ListaCaracteristicas, Nombre)
+    ),
+
+    Caracteristicas = ListaCaracteristicas.
+
+
+preguntas:-
+
+    %iniciamos como ejemplo el tipo de transmision
+    writeln("Escoja el tipo de transmision que desea"),
+    writeln("1.- Automatico"),
+    writeln("2- Estandar"), nl,
+    write("Respuesta: "), read(RTransmision), nl,
+
+    (
+        RTransmision is 1 -> 
+            Transmision = automatico;
+        
+        RTransmision is 2 -> 
+            Transmision = estandar
+    ),
+
+    %iniciamos la pregunta de combustible
+    writeln("Escoja el tipo de combustible que desea"),
+    writeln("1.- Gasolina"),
+    writeln("2- Electrico"), nl,
+    write("Respuesta: "), read(RCombustible), nl,
+
+
+    (
+        RCombustible is 1 -> 
+            Combustible = gasolina;
+        
+        RCombustible is 2 -> 
+            Combustible = electrico
+    ),
+
+
+    buscarCarro(Transmision, "transmision", Carro),
+    buscarCarro(Combustible, "combustible", Carro),
+
+    % mostrar en pantalla los carros que se recomiendan
+    write(Carro).
+
+
