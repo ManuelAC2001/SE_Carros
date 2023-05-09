@@ -118,35 +118,37 @@ describirCarro(Caracteristicas):-
 
 % método para buscar un carro de acuerdo a la caracteristica seleccionada
 % regla que funciona como helper para realizar el menu de opciones del usuario
-buscarCarro(X, Propiedad):-
-    describirCarro(Caracteristicas),
+buscarCarro(Nombre, Propiedad, Caracteristicas):-
+
+    describirCarro(ListaCaracteristicas),
 
     (
         Propiedad == "marca" -> 
-            nth0(0, Caracteristicas, X);
+            nth0(0, ListaCaracteristicas, Nombre);
 
         Propiedad == "modelo" -> 
-            nth0(1, Caracteristicas, X);
+            nth0(1, ListaCaracteristicas, Nombre);
 
         Propiedad == "generacion" -> 
-            nth0(2, Caracteristicas, X);
+            nth0(2, ListaCaracteristicas, Nombre);
 
         Propiedad == "anio" -> 
-            nth0(3, Caracteristicas, X);
+            nth0(3, ListaCaracteristicas, Nombre);
         
         Propiedad == "carroceria" -> 
-            nth0(4, Caracteristicas, X);
+            nth0(4, ListaCaracteristicas, Nombre);
 
         Propiedad == "numero de puertas" -> 
-            nth0(5, Caracteristicas, X);
+            nth0(5, ListaCaracteristicas, Nombre);
         
         Propiedad == "transmision" -> 
-            nth0(6, Caracteristicas, X);
+            nth0(6, ListaCaracteristicas, Nombre);
         
         Propiedad == "combustible" -> 
-            nth0(7, Caracteristicas, X);
+            nth0(7, ListaCaracteristicas, Nombre);
 
         Propiedad == "precio" -> 
-            nth0(8, Caracteristicas, X)
+            nth0(8, ListaCaracteristicas, Nombre)
     ),
-    writeln(Caracteristicas).
+
+    Caracteristicas = ListaCaracteristicas.
