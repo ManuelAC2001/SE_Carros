@@ -191,5 +191,3 @@ preguntas:-
 
     % mostrar en pantalla los carros que se recomiendan
     write(Carro).
-
-
