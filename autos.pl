@@ -183,11 +183,36 @@ preguntarCombustible(Combustible):-
             Combustible = electrico
     ).
 
+preguntarCarroceria(Carroceria):-
+    writeln("Escoja el tipo de carroceria que desea"),
+    writeln("1.- Convertible"),
+    writeln("2.- Sedan"),
+    writeln("3.- Hatchback"),
+    writeln("4.- Pick-up"), 
+
+    write("Respuesta: "), read(RCarroceria), nl,
+
+    (
+        RCarroceria is 1 -> 
+            Carroceria = convertible;
+        
+        RCarroceria is 2 ->
+            Carroceria = sedan;
+        
+        RCarroceria is 3 ->
+            Carroceria = hatchback;
+        
+        RCarroceria is 4 ->
+            Carroceria = pickup
+    ).
+
 iniciar:-
     preguntarTransmision(Transmision),
     preguntarCombustible(Combustible),
+    preguntarCarroceria(Carroceria),
 
     buscarCarro(Transmision, "transmision", Carro),
     buscarCarro(Combustible, "combustible", Carro),
+    buscarCarro(Carroceria, "carroceria", Carro),
 
     write("Carro: "), write(Carro).
