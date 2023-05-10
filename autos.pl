@@ -151,10 +151,9 @@ buscarCarro(Nombre, Propiedad, Caracteristicas):-
 
     Caracteristicas = ListaCaracteristicas.
 
+% reglas para la creacion de preguntas para las caracteristicas
 
-preguntas:-
-
-    %iniciamos como ejemplo el tipo de transmision
+preguntarTransmision(Transmision):- 
     writeln("Escoja el tipo de transmision que desea"),
     writeln("1.- Automatico"),
     writeln("2- Estandar"), nl,
@@ -166,9 +165,10 @@ preguntas:-
         
         RTransmision is 2 -> 
             Transmision = estandar
-    ),
+    ).
 
-    %iniciamos la pregunta de combustible
+
+preguntarCombustible(Combustible):-
     writeln("Escoja el tipo de combustible que desea"),
     writeln("1.- Gasolina"),
     writeln("2- Electrico"), nl,
@@ -181,11 +181,13 @@ preguntas:-
         
         RCombustible is 2 -> 
             Combustible = electrico
-    ),
+    ).
 
+iniciar:-
+    preguntarTransmision(Transmision),
+    preguntarCombustible(Combustible),
 
     buscarCarro(Transmision, "transmision", Carro),
     buscarCarro(Combustible, "combustible", Carro),
 
-    % mostrar en pantalla los carros que se recomiendan
-    write(Carro).
+    write("Carro: "), write(Carro).
