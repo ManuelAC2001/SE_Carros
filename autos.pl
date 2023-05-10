@@ -18,9 +18,7 @@ anioFabricacion("NC", 2015).
 
 % carroceria de las generaciones del modelo mx-5
 carroceria("NA", convertible).
-
 carroceria("NB",convertible).
-
 carroceria("NC",convertible).
 
 % numero de puertas que tiene cada generacion dependiendo de su carroceria
@@ -29,29 +27,86 @@ numero_puertas(carroceria("NB", convertible), 2).
 numero_puertas(carroceria("NC", convertible), 2). 
 
 
-combustible(carroceria("NA", convertible), gasolina).
+transmision(carroceria("NA", convertible),  estandar).
 transmision(carroceria("NA", convertible),  automatico).
 
 transmision(carroceria("NB", convertible),  estandar).
+transmision(carroceria("NB", convertible),  automatico).
+
 transmision(carroceria("NC", convertible),  estandar).
+transmision(carroceria("NC", convertible),  automatico).
+
+
+combustible(carroceria("NA", convertible), gasolina).
+
+combustible(carroceria("NB", convertible), gasolina).
+
+combustible(carroceria("NC", convertible), gasolina).
+combustible(carroceria("NC", convertible), electrico).
+
 
 precioCarroceria(carroceria("NA", convertible), 1500).
+precioCarroceria(carroceria("NB", convertible), 2300).
+precioCarroceria(carroceria("NC", convertible), 4700).
 
 
 precioTransmision(
     transmision(carroceria("NA", convertible),  estandar),
     2500
 ).
-
 precioTransmision(
     transmision(carroceria("NA", convertible),  automatico),
     5000
 ).
 
 
+precioTransmision(
+    transmision(carroceria("NB", convertible),  estandar),
+    7390
+).
+precioTransmision(
+    transmision(carroceria("NB", convertible),  automatico),
+    9350
+).
+
+
+precioTransmision(
+    transmision(carroceria("NC", convertible),  estandar),
+    10_500
+).
+precioTransmision(
+    transmision(carroceria("NC", convertible),  automatico),
+    12_350
+).
+
+
 precioCombustible(
     combustible(carroceria("NA", convertible), gasolina),
     4750
+).
+precioCombustible(
+    combustible(carroceria("NA", convertible), electrico),
+    6750
+).
+
+
+precioCombustible(
+    combustible(carroceria("NB", convertible), gasolina),
+    7250
+).
+precioCombustible(
+    combustible(carroceria("NB", convertible), electrico),
+    8560
+).
+
+
+precioCombustible(
+    combustible(carroceria("NC", convertible), gasolina),
+    9500
+).
+precioCombustible(
+    combustible(carroceria("NC", convertible), electrico),
+    9750
 ).
 
 calcularPrecio(Caracteristicas, PrecioCalculado):- 
@@ -75,6 +130,12 @@ calcularPrecio(Caracteristicas, PrecioCalculado):-
         PrecioTransmision +
         PrecioCombustible
     ).
+
+
+% FIN DE LA BASE DE CONOCIMIENTOS
+
+
+% INCIO DEL MOTOR DE INFERENCIA
 
 
 describirCarro(Caracteristicas):-
@@ -101,12 +162,7 @@ describirCarro(Caracteristicas):-
     calcularPrecio(ListaCaracteristicas, Precio),
     append(ListaCaracteristicas, [Precio], Caracteristicas).
 
-% FIN DE LA BASE DE CONOCIMIENTOS
-
-
-% INCIO DEL MOTOR DE INFERENCIA
-
-% método para buscar un carro de acuerdo a la caracteristica seleccionada
+% regla para buscar un carro de acuerdo a la caracteristica seleccionada
 % regla que funciona como helper para realizar el menu de opciones del usuario
 buscarCarro(Nombre, Propiedad, Caracteristicas):-
 
@@ -146,6 +202,7 @@ buscarCarro(Nombre, Propiedad, Caracteristicas):-
 % reglas para la creacion de preguntas para las caracteristicas
 
 preguntarTransmision(Transmision):- 
+
     writeln("Escoja el tipo de transmision que desea"),
     writeln("1.- Automatico"),
     writeln("2- Estandar"), nl,
@@ -158,7 +215,6 @@ preguntarTransmision(Transmision):-
         RTransmision is 2 -> 
             Transmision = estandar
     ).
-
 
 preguntarCombustible(Combustible):-
     writeln("Escoja el tipo de combustible que desea"),
@@ -203,8 +259,12 @@ iniciar:-
     preguntarCombustible(Combustible),
     preguntarCarroceria(Carroceria),
 
+    writeln("Los siguientes carros son los que mas se ajustan a tus preferencia:"), nl,
+
     buscarCarro(Transmision, "transmision", Carro),
     buscarCarro(Combustible, "combustible", Carro),
     buscarCarro(Carroceria, "carroceria", Carro),
 
-    write("Carro: "), write(Carro).
+    write("Carro: "), write(Carro), nl,
+    fail.
+iniciar.
