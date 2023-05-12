@@ -184,7 +184,7 @@ buscarCarro(Nombre, Propiedad, Caracteristicas):-
         Propiedad == "carroceria" -> 
             nth0(4, ListaCaracteristicas, Nombre);
 
-        Propiedad == "numero de puertas" -> 
+        Propiedad == "numero_puertas" -> 
             nth0(5, ListaCaracteristicas, Nombre);
         
         Propiedad == "transmision" -> 
@@ -205,7 +205,8 @@ preguntarTransmision(Transmision):-
 
     writeln("Escoja el tipo de transmision que desea"),
     writeln("1.- Automatico"),
-    writeln("2- Estandar"), nl,
+    writeln("2.- Estandar"),
+    writeln("3.- Ambos"), nl,
     write("Respuesta: "), read(RTransmision), nl,
 
     (
@@ -213,13 +214,17 @@ preguntarTransmision(Transmision):-
             Transmision = automatico;
         
         RTransmision is 2 -> 
-            Transmision = estandar
+            Transmision = estandar; 
+
+        RTransmision is 3-> 
+            Transmision = _
     ).
 
 preguntarCombustible(Combustible):-
     writeln("Escoja el tipo de combustible que desea"),
     writeln("1.- Gasolina"),
-    writeln("2- Electrico"), nl,
+    writeln("2- Electrico"),
+    writeln("3.- Ambos"), nl,
     write("Respuesta: "), read(RCombustible), nl,
 
 
@@ -228,7 +233,10 @@ preguntarCombustible(Combustible):-
             Combustible = gasolina;
         
         RCombustible is 2 -> 
-            Combustible = electrico
+            Combustible = electrico;
+
+        RCombustible is 3 -> 
+            Combustible = _
     ).
 
 preguntarCarroceria(Carroceria):-
@@ -254,16 +262,38 @@ preguntarCarroceria(Carroceria):-
             Carroceria = pickup
     ).
 
+preguntarNumeroPuertas(NumeroPuertas):-
+    writeln("Escoja el numero de puertas que desea"),
+    writeln("1.- 2 puertas"),
+    writeln("2.- 4 puertas"),
+    writeln("3.- Ambos"), nl,
+
+    write("Respuesta: "), read(RNumeroPuertas), nl,
+
+    (
+        RNumeroPuertas is 1 -> 
+            NumeroPuertas = 2;
+        
+        RNumeroPuertas is 2 ->
+            NumeroPuertas = 4;
+
+        RNumeroPuertas is 3 -> 
+            NumeroPuertas = _
+    ).
+
+
 iniciar:-
     preguntarTransmision(Transmision),
     preguntarCombustible(Combustible),
     preguntarCarroceria(Carroceria),
+    preguntarNumeroPuertas(NumeroPuertas),
 
     writeln("Los siguientes carros son los que mas se ajustan a tus preferencia:"), nl,
 
     buscarCarro(Transmision, "transmision", Carro),
     buscarCarro(Combustible, "combustible", Carro),
     buscarCarro(Carroceria, "carroceria", Carro),
+    buscarCarro(NumeroPuertas, "numero_puertas", Carro),
 
     write("Carro: "), write(Carro), nl,
     fail.
