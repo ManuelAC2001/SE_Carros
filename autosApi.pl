@@ -13,6 +13,7 @@ server(Port) :-
 
 % CONFIGURACION DE LAS RUTAS
 :- http_handler('/carros', carros_json, []).
+:- http_handler('/buscar/carros', buscar_carros_json, []).
 
 % INICIO DE LA BASE DE CONOCIMIENTOS
 
@@ -124,6 +125,30 @@ precioCombustible(
     combustible(carroceria("NC", convertible), electrico),
     9750
 ).
+% FIN DE LA BASE DE CONOCIMIENTOS
+
+
+calcularPrecio(Caracteristicas, PrecioCalculado):- 
+
+    % Leer indices del arreglo de Caracteristicas
+    nth0(2, Caracteristicas, Generacion),
+    nth0(4, Caracteristicas, Carroceria),
+    nth0(6, Caracteristicas, Transmision),
+    nth0(7, Caracteristicas, Combustible),
+
+    carroceria(Generacion, Carroceria), 
+    transmision(carroceria(Generacion, Carroceria), Transmision),
+    combustible(carroceria(Generacion, Carroceria), Combustible),
+
+    precioCarroceria(carroceria(Generacion, Carroceria), PrecioInicial),
+    precioTransmision(transmision(carroceria(Generacion, Carroceria), Transmision), PrecioTransmision),
+    precioCombustible(combustible(carroceria(Generacion, Carroceria), Combustible), PrecioCombustible),
+
+    PrecioCalculado is (
+        PrecioInicial + 
+        PrecioTransmision +
+        PrecioCombustible
+    ).
 
 getCarro(Carro):-
     marca(Marca),
@@ -135,6 +160,19 @@ getCarro(Carro):-
     transmision(carroceria(Generacion, Carroceria), Transmision),
     combustible(carroceria(Generacion, Carroceria), Combustible),
 
+    Caracteristicas = [
+        Marca, 
+        Modelo, 
+        Generacion, 
+        Anio, 
+        Carroceria, 
+        NumeroPuertas, 
+        Transmision, 
+        Combustible
+    ],
+
+    calcularPrecio(Caracteristicas, Precio),
+
     Carro = _{
         marca:Marca, 
         modelo:Modelo, 
@@ -143,18 +181,75 @@ getCarro(Carro):-
         carroceria:Carroceria, 
         numeropuertas:NumeroPuertas, 
         transmision:Transmision, 
-        combustible:Combustible
+        combustible:Combustible,
+        precio:Precio
     }.
 
 
-getListaCarro(Lista):-
-    findall(Carro, getCarro(Carro), Lista).
+buscarCarro(Nombre, Propiedad, Carro):-
+
+    getCarro(Carro),
+
+    (
+        Propiedad == "marca" -> 
+            Nombre = Carro.marca;
+        
+        Propiedad == "modelo" -> 
+            Nombre = Carro.modelo;
+
+        Propiedad == "generacion" -> 
+            Nombre = Carro.generacion;
+
+        Propiedad == "anio" -> 
+            Nombre = Carro.anio;
+        
+        Propiedad == "carroceria" -> 
+            Nombre = Carro.carroceria;
+
+        Propiedad == "numero_puertas" -> 
+            Nombre = Carro.numeropuertas;
+        
+        Propiedad == "transmision" -> 
+            Nombre = Carro.transmision;
+        
+        Propiedad == "combustible" -> 
+            Nombre = Carro.combustible;
+
+        Propiedad == "precio" -> 
+            Nombre = Carro.precio
+    ).
 
 carros_json(_Request):- 
-    getListaCarro(Lista),
+    findall(Carro, getCarro(Carro), Lista),
     reply_json_dict(_{carros:Lista}).
 
 
+filtrarCarro(Carro, Respuestas):-
+    
+    nth0(0, Respuestas, Transmision),
+    nth0(1, Respuestas, Combustible),
+    nth0(2, Respuestas, Carroceria),
+    nth0(3, Respuestas, NumeroPuertas),
 
+    buscarCarro(Transmision, "transmision", Carro),
+    buscarCarro(Combustible, "combustible", Carro),
+    buscarCarro(Carroceria, "carroceria", Carro),
+    buscarCarro(NumeroPuertas, "numero_puertas", Carro).
 
-% FIN DE LA BASE DE CONOCIMIENTOS
+buscar_carros_json(Request):-
+    http_parameters(Request, [ 
+        transmision(Transmision, [sting]),
+        combustible(Combustible, [sting]),
+        numeroPuertas(NumeroPuertas, [integer]),
+        carroceria(Carroceria, [sting])
+    ]),
+
+    Respuestas = [
+        Transmision,
+        Combustible,
+        Carroceria,
+        NumeroPuertas
+    ],
+
+    findall(Carro, filtrarCarro(Carro, Respuestas), Lista),
+    reply_json_dict(_{carros:Lista}).
