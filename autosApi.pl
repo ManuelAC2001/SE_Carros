@@ -1,8 +1,9 @@
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_json)).
-:- use_module(library(http/json)).
 :- use_module(library(http/http_parameters)).
+:- use_module(library(http/http_cors)).
+
 
 
 % CONFIGURACION DEL SERVIDOR
@@ -10,6 +11,11 @@ server(Port) :-
     http_server(http_dispatch, [port(Port)]).
 
 :- server(8000).
+
+% CONFIGURACION DEL CORS
+:- set_setting(http:cors, [*]).
+
+
 
 % CONFIGURACION DE LAS RUTAS
 :- http_handler('/carros', carros_json, []).
@@ -220,6 +226,7 @@ buscarCarro(Nombre, Propiedad, Carro):-
     ).
 
 carros_json(_Request):- 
+    cors_enable,
     findall(Carro, getCarro(Carro), Lista),
     reply_json_dict(_{carros:Lista}).
 
@@ -237,6 +244,7 @@ filtrarCarro(Carro, Respuestas):-
     buscarCarro(NumeroPuertas, "numero_puertas", Carro).
 
 buscar_carros_json(Request):-
+    cors_enable,
     http_parameters(Request, [ 
         transmision(Transmision, [sting]),
         combustible(Combustible, [sting]),
