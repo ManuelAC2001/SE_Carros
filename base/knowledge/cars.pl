@@ -4,12 +4,12 @@
 marca(mazda).
 
 % modelo mx-5
-modelo(mazda, mx-5).
+modelo(mazda, "mx-5").
 
 % generaciones de cada modelo mx-5
-generacion(mx-5, "NA").
-generacion(mx-5, "NB").
-generacion(mx-5, "NC").
+generacion("mx-5", "NA").
+generacion("mx-5", "NB").
+generacion("mx-5", "NC").
 
 % anio de fabricacion del modelo mx-5
 anioFabricacion("NA", 1989).
@@ -108,7 +108,9 @@ precioCombustible(
     combustible(carroceria("NC", convertible), electrico),
     9750
 ).
+% FIN DE LA BASE DE CONOCIMIENTOS
 
+% INICIO DEL MOTOR DE INFERENCIA
 calcularPrecio(Caracteristicas, PrecioCalculado):- 
 
     % Leer indices del arreglo de Caracteristicas
@@ -131,14 +133,7 @@ calcularPrecio(Caracteristicas, PrecioCalculado):-
         PrecioCombustible
     ).
 
-
-% FIN DE LA BASE DE CONOCIMIENTOS
-
-
-% INCIO DEL MOTOR DE INFERENCIA
-
-
-describirCarro(Caracteristicas):-
+getCarro(Carro):-
     marca(Marca),
     modelo(Marca, Modelo),
     generacion(Modelo, Generacion),
@@ -148,153 +143,74 @@ describirCarro(Caracteristicas):-
     transmision(carroceria(Generacion, Carroceria), Transmision),
     combustible(carroceria(Generacion, Carroceria), Combustible),
 
-    ListaCaracteristicas = [
-        Marca,
-        Modelo,
-        Generacion,
-        Anio,
-        Carroceria,
-        NumeroPuertas,
-        Transmision,
+    Caracteristicas = [
+        Marca, 
+        Modelo, 
+        Generacion, 
+        Anio, 
+        Carroceria, 
+        NumeroPuertas, 
+        Transmision, 
         Combustible
     ],
 
-    calcularPrecio(ListaCaracteristicas, Precio),
-    append(ListaCaracteristicas, [Precio], Caracteristicas).
+    calcularPrecio(Caracteristicas, Precio),
 
-% regla para buscar un carro de acuerdo a la caracteristica seleccionada
-% regla que funciona como helper para realizar el menu de opciones del usuario
-buscarCarro(Nombre, Propiedad, Caracteristicas):-
+    Carro = _{
+        marca:Marca, 
+        modelo:Modelo, 
+        generacion:Generacion, 
+        anio:Anio, 
+        carroceria:Carroceria, 
+        numeropuertas:NumeroPuertas, 
+        transmision:Transmision, 
+        combustible:Combustible,
+        precio:Precio
+    }.
 
-    describirCarro(ListaCaracteristicas),
+buscarCarro(Nombre, Propiedad, Carro):-
+
+    getCarro(Carro),
 
     (
         Propiedad == "marca" -> 
-            nth0(0, ListaCaracteristicas, Nombre);
-
+            Nombre = Carro.marca;
+        
         Propiedad == "modelo" -> 
-            nth0(1, ListaCaracteristicas, Nombre);
+            Nombre = Carro.modelo;
 
         Propiedad == "generacion" -> 
-            nth0(2, ListaCaracteristicas, Nombre);
+            Nombre = Carro.generacion;
 
         Propiedad == "anio" -> 
-            nth0(3, ListaCaracteristicas, Nombre);
+            Nombre = Carro.anio;
         
         Propiedad == "carroceria" -> 
-            nth0(4, ListaCaracteristicas, Nombre);
+            Nombre = Carro.carroceria;
 
         Propiedad == "numero_puertas" -> 
-            nth0(5, ListaCaracteristicas, Nombre);
+            Nombre = Carro.numeropuertas;
         
         Propiedad == "transmision" -> 
-            nth0(6, ListaCaracteristicas, Nombre);
+            Nombre = Carro.transmision;
         
         Propiedad == "combustible" -> 
-            nth0(7, ListaCaracteristicas, Nombre);
+            Nombre = Carro.combustible;
 
         Propiedad == "precio" -> 
-            nth0(8, ListaCaracteristicas, Nombre)
-    ),
-
-    Caracteristicas = ListaCaracteristicas.
-
-% reglas para la creacion de preguntas para las caracteristicas
-
-preguntarTransmision(Transmision):- 
-
-    writeln("Escoja el tipo de transmision que desea"),
-    writeln("1.- Automatico"),
-    writeln("2.- Estandar"),
-    writeln("3.- Ambos"), nl,
-    write("Respuesta: "), read(RTransmision), nl,
-
-    (
-        RTransmision is 1 -> 
-            Transmision = automatico;
-        
-        RTransmision is 2 -> 
-            Transmision = estandar; 
-
-        RTransmision is 3-> 
-            Transmision = _
+            Nombre = Carro.precio
     ).
 
-preguntarCombustible(Combustible):-
-    writeln("Escoja el tipo de combustible que desea"),
-    writeln("1.- Gasolina"),
-    writeln("2- Electrico"),
-    writeln("3.- Ambos"), nl,
-    write("Respuesta: "), read(RCombustible), nl,
-
-
-    (
-        RCombustible is 1 -> 
-            Combustible = gasolina;
-        
-        RCombustible is 2 -> 
-            Combustible = electrico;
-
-        RCombustible is 3 -> 
-            Combustible = _
-    ).
-
-preguntarCarroceria(Carroceria):-
-    writeln("Escoja el tipo de carroceria que desea"),
-    writeln("1.- Convertible"),
-    writeln("2.- Sedan"),
-    writeln("3.- Hatchback"),
-    writeln("4.- Pick-up"), 
-
-    write("Respuesta: "), read(RCarroceria), nl,
-
-    (
-        RCarroceria is 1 -> 
-            Carroceria = convertible;
-        
-        RCarroceria is 2 ->
-            Carroceria = sedan;
-        
-        RCarroceria is 3 ->
-            Carroceria = hatchback;
-        
-        RCarroceria is 4 ->
-            Carroceria = pickup
-    ).
-
-preguntarNumeroPuertas(NumeroPuertas):-
-    writeln("Escoja el numero de puertas que desea"),
-    writeln("1.- 2 puertas"),
-    writeln("2.- 4 puertas"),
-    writeln("3.- Ambos"), nl,
-
-    write("Respuesta: "), read(RNumeroPuertas), nl,
-
-    (
-        RNumeroPuertas is 1 -> 
-            NumeroPuertas = 2;
-        
-        RNumeroPuertas is 2 ->
-            NumeroPuertas = 4;
-
-        RNumeroPuertas is 3 -> 
-            NumeroPuertas = _
-    ).
-
-
-iniciar:-
-    preguntarTransmision(Transmision),
-    preguntarCombustible(Combustible),
-    preguntarCarroceria(Carroceria),
-    preguntarNumeroPuertas(NumeroPuertas),
-
-    writeln("Los siguientes carros son los que mas se ajustan a tus preferencia:"), nl,
+filtrarCarro(Carro, Respuestas):-
+    
+    nth0(0, Respuestas, Transmision),
+    nth0(1, Respuestas, Combustible),
+    nth0(2, Respuestas, Carroceria),
+    nth0(3, Respuestas, NumeroPuertas),
 
     buscarCarro(Transmision, "transmision", Carro),
     buscarCarro(Combustible, "combustible", Carro),
     buscarCarro(Carroceria, "carroceria", Carro),
-    buscarCarro(NumeroPuertas, "numero_puertas", Carro),
+    buscarCarro(NumeroPuertas, "numero_puertas", Carro).
 
-    write("Carro: "), write(Carro), nl,
-    fail.
-iniciar.
+% FIN DEL MOTOR DE INFERENCIA

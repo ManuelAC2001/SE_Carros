@@ -1,7 +1,7 @@
 
 async function getCarros() {
     let carros = []
-    await fetch("http://localhost:8000/carros")
+    await fetch("http://localhost:8000")
         .then(response => response.json())
         .then(data => carros = data.carros)
         .catch(err => console.log(err))
@@ -18,7 +18,7 @@ this.onload = async () => {
         carContainer.innerHTML += `
 
         <div class="car_card">
-            <p>Marca: $${carro.marca}</p>
+            <p>Marca: ${carro.marca}</p>
             <p>Modelo: ${carro.modelo}</p>
             <p>Generación: ${carro.generacion}</p>
             <p>Año de salida: ${carro.anio}</p>
@@ -26,6 +26,7 @@ this.onload = async () => {
             <p>Número de puertas: ${carro.numeropuertas}</p>
             <p>Combustible: ${carro.combustible}</p>
             <p>Transmisión: ${carro.transmision}</p>
+            <p>Precio : $${carro.precio}</p>
         </div>
         </br>
         `
