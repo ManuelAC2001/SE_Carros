@@ -1,5 +1,9 @@
+this.onload = () => {
+    // showCars()
+    filterCars()
+}
 
-async function getCarros() {
+const getCars = async () => {
     let carros = []
     await fetch("http://localhost:8000")
         .then(response => response.json())
@@ -8,10 +12,32 @@ async function getCarros() {
     return carros
 }
 
-this.onload = async () => {
-    let carros = await getCarros()
-    // carros.forEach(c => console.log(c))
+const filterCars = async () => {
 
+    const dataExample = {
+        transmision: "automatico",
+        combustible: "gasolina",
+        numeropuertas: 2,
+        carroceria: "convertible",
+    }
+
+
+    fetch("http://localhost:8000/buscar/carros", {
+        method: "POST",
+        body: JSON.stringify(dataExample)
+    })
+        .then(response => response.json())
+        .then(data => {
+            const carros = data.carros
+            carros.forEach(carro => console.log(carro))
+        })
+        .catch(err => console.log(err))
+
+}
+
+const showCars = async () => {
+
+    let carros = await getCars()
     let carContainer = document.querySelector(".car__container")
 
     carros.forEach(carro => {
@@ -30,7 +56,6 @@ this.onload = async () => {
         </div>
         </br>
         `
-
     })
-
 }
+

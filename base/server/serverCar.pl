@@ -3,6 +3,9 @@
 :- use_module(library(http/http_json)).
 :- use_module(library(http/http_parameters)).
 :- use_module(library(http/http_cors)).
+:- use_module(library(http/http_header)).
+:- use_module(library(http/http_client)).
+:- use_module(library(http/json)).
 
 :- consult("./base/server/routes/routesCar.pl").
 
