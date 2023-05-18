@@ -1,6 +1,6 @@
 this.onload = () => {
     // showCars()
-    filterCars()
+    // filterCars()
 }
 
 const getCars = async () => {
@@ -9,20 +9,20 @@ const getCars = async () => {
         .then(response => response.json())
         .then(data => carros = data.carros)
         .catch(err => console.log(err))
-    return carros
+        return carros
 }
 
 const filterCars = async () => {
-
+    
     const dataExample = {
-        transmision: "automatico",
-        combustible: "gasolina",
+        transmision: "estandar",
+        combustible: "electrico",
         numeropuertas: 2,
         carroceria: "convertible",
     }
 
 
-    fetch("http://localhost:8000/buscar/carros", {
+    await fetch("http://localhost:8000/buscar/carros", {
         method: "POST",
         body: JSON.stringify(dataExample)
     })
@@ -32,9 +32,9 @@ const filterCars = async () => {
             carros.forEach(carro => console.log(carro))
         })
         .catch(err => console.log(err))
-
-}
-
+        
+    }
+    
 const showCars = async () => {
 
     let carros = await getCars()
@@ -42,11 +42,11 @@ const showCars = async () => {
 
     carros.forEach(carro => {
         carContainer.innerHTML += `
-
+        
         <div class="car_card">
-            <p>Marca: ${carro.marca}</p>
-            <p>Modelo: ${carro.modelo}</p>
-            <p>Generación: ${carro.generacion}</p>
+        <p>Marca: ${carro.marca}</p>
+        <p>Modelo: ${carro.modelo}</p>
+        <p>Generación: ${carro.generacion}</p>
             <p>Año de salida: ${carro.anio}</p>
             <p>Carroceria: ${carro.carroceria}</p>
             <p>Número de puertas: ${carro.numeropuertas}</p>
@@ -58,4 +58,3 @@ const showCars = async () => {
         `
     })
 }
-

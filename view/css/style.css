@@ -1,0 +1,64 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin:0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #fafafa;
+    --second-color: #5679ff;
+    --circle-right: #ffffff;
+    --circle-left: #febc5c;
+}
+
+.car__container {
+    background: var(--main-color);
+    height: 100vh;
+    display: grid;
+    grid-template-columns:  repeat(2, 1fr);
+    position: relative;
+}
+
+.car__header {
+    background-color: var(--second-color);
+}
+
+
+.circle {
+    display: grid;
+    grid-template-columns:  repeat(2, 1fr);
+
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    margin: auto;
+    border-radius: 50%;
+    
+    width:  25rem;
+    height: 25rem;
+}
+
+.semicircle-left {
+    background-color: var(--circle-left);
+    border-radius: 25rem 0rem 0 25rem;
+}
+
+.semicircle-right {
+    background-color: var(--circle-right);
+    border-radius: 0rem 25rem 25rem 0rem;
+}
+
+.car__img img{
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+    margin: auto;
+    width: 48rem;
+}
