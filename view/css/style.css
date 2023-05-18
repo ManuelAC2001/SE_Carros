@@ -1,4 +1,3 @@
-/* apply a natural box layout model to all elements, but allowing components to change */
 html {
     box-sizing: border-box;
 }
@@ -7,7 +6,7 @@ html {
 *:before,
 *:after {
     box-sizing: inherit;
-    margin:0;
+    margin: 0;
     padding: 0;
 }
 
@@ -16,33 +15,57 @@ html {
     --second-color: #5679ff;
     --circle-right: #ffffff;
     --circle-left: #febc5c;
+    --principal-font-color: #304e68;
 }
 
 .car__container {
     background: var(--main-color);
     height: 100vh;
     display: grid;
-    grid-template-columns:  repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     position: relative;
 }
 
 .car__header {
-    background-color: var(--second-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    /* background-color: var(--second-color); */
+    background-image: linear-gradient(
+        #5679FF,
+        #5678ffd8
+      ),
+       url("../img/hero_car.jpg");
 }
 
 
 .circle {
     display: grid;
-    grid-template-columns:  repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     position: absolute;
     z-index: 10;
     inset: 0;
     margin: auto;
     border-radius: 50%;
-    
-    width:  25rem;
+
+    width: 25rem;
     height: 25rem;
+}
+
+.circle-outer-left {
+    border-right: 1rem dotted #fafafa60;
+    width: 38rem;
+}
+
+.circle-outer-right {
+
+    border-left: .2rem dashed #ff9d0b;
+    width: 30rem;
+    height: 30rem;
+
 }
 
 .semicircle-left {
@@ -55,10 +78,43 @@ html {
     border-radius: 0rem 25rem 25rem 0rem;
 }
 
-.car__img img{
+
+.car__img img {
     position: absolute;
     z-index: 20;
     inset: 0;
     margin: auto;
     width: 48rem;
+}
+
+.car__information {
+    padding: 1rem 2rem;
+    font-weight: bolder;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    color: var(--principal-font-color);
+}
+
+.car__information div {
+    margin-bottom: 2rem;
+}
+
+.car__name {
+    font-size: 3rem;
+    color: var(--principal-font-color);
+}
+
+.car__model {
+    color: transparent;
+    -webkit-text-stroke: 1.2px #5d6981;
+}
+
+.car__model span {
+    color: var(--principal-font-color);
+    -webkit-text-stroke: 0;
+
+}
+
+.car_features p {
+    color: #ff9d0b;
 }

@@ -1,6 +1,8 @@
-this.onload = () => {
+this.onload = async () => {
     // showCars()
     // filterCars()
+    const carros = await  getCars()
+    carros.forEach( carro => console.log(carro))
 }
 
 const getCars = async () => {
