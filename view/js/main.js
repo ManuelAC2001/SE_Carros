@@ -1,8 +1,9 @@
 this.onload = async () => {
-    // showCars()
+
+    const cars = await getCars()
+    showCar(cars[7])
+
     // filterCars()
-    const carros = await  getCars()
-    carros.forEach( carro => console.log(carro))
 }
 
 const getCars = async () => {
@@ -11,11 +12,11 @@ const getCars = async () => {
         .then(response => response.json())
         .then(data => carros = data.carros)
         .catch(err => console.log(err))
-        return carros
+    return carros
 }
 
 const filterCars = async () => {
-    
+
     const dataExample = {
         transmision: "estandar",
         combustible: "electrico",
@@ -34,29 +35,33 @@ const filterCars = async () => {
             carros.forEach(carro => console.log(carro))
         })
         .catch(err => console.log(err))
-        
-    }
-    
-const showCars = async () => {
 
-    let carros = await getCars()
-    let carContainer = document.querySelector(".car__container")
+}
 
-    carros.forEach(carro => {
-        carContainer.innerHTML += `
-        
-        <div class="car_card">
-        <p>Marca: ${carro.marca}</p>
-        <p>Modelo: ${carro.modelo}</p>
-        <p>Generación: ${carro.generacion}</p>
-            <p>Año de salida: ${carro.anio}</p>
-            <p>Carroceria: ${carro.carroceria}</p>
-            <p>Número de puertas: ${carro.numeropuertas}</p>
-            <p>Combustible: ${carro.combustible}</p>
-            <p>Transmisión: ${carro.transmision}</p>
-            <p>Precio : $${carro.precio}</p>
-        </div>
-        </br>
-        `
+const showCar = async car => {
+
+    const carBrandHTML = document.querySelector(".car__brand")
+    const carModelHTML = document.querySelector(".car__model")
+    const carFeaturesHTML = document.querySelector(".car__features")
+
+    carBrandHTML.innerText = car.marca
+    carModelHTML.innerText = `${car.modelo} ${car.generacion}`
+    carModelHTML.innerHTML += ` <span>${car.anio}</span>`
+
+    const carFeaturesList = [
+        car.carroceria,
+        car.numeropuertas,
+        car.combustible,
+        car.transmision,
+        car.precio
+    ]
+
+    Array.from(carFeaturesHTML.children).forEach((featureDIV, key) => {
+
+        const featureText = featureDIV.querySelector("P")
+        featureText.innerText += `${carFeaturesList[key]}`
     })
+
+
+
 }

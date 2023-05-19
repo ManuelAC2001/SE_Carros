@@ -106,6 +106,7 @@ html {
 
 .car__model {
     color: transparent;
+    text-transform: uppercase;
     -webkit-text-stroke: 1.2px #5d6981;
 }
 
@@ -115,6 +116,6 @@ html {
 
 }
 
-.car_features p {
+.car__features p {
     color: #ff9d0b;
 }
