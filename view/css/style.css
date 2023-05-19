@@ -119,3 +119,36 @@ html {
 .car__features p {
     color: #ff9d0b;
 }
+
+.car__slider {
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+    top: 85%;
+    margin: auto;
+    width: 8.5rem;
+    height: 2.5rem;
+
+    border-radius: 2rem;
+    background: #424242 ;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.slider__member {
+    width : .65rem;
+    height: .65rem;
+    background-color: var(--circle-left);
+    border-radius: 50%;
+    transition: all .2s ease-in-out;
+}
+
+.slider__member:hover {
+    cursor: pointer;
+    width : .85rem;
+    height: .85rem;
+    background-color: #ff9d0b;
+}

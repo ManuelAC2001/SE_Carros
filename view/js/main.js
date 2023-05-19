@@ -1,24 +1,23 @@
 this.onload = async () => {
 
-    const cars = await getCars()
-    showCar(cars[7])
-
-    // filterCars()
+    const cars = await filterCars()
+    showCar(cars[0])
 }
 
 const getCars = async () => {
-    let carros = []
+    let cars = []
     await fetch("http://localhost:8000")
         .then(response => response.json())
-        .then(data => carros = data.carros)
+        .then(data => cars = data.carros)
         .catch(err => console.log(err))
-    return carros
+    return cars
 }
 
 const filterCars = async () => {
+    let cars = []
 
     const dataExample = {
-        transmision: "estandar",
+        transmision: "automatico",
         combustible: "electrico",
         numeropuertas: 2,
         carroceria: "convertible",
@@ -30,12 +29,10 @@ const filterCars = async () => {
         body: JSON.stringify(dataExample)
     })
         .then(response => response.json())
-        .then(data => {
-            const carros = data.carros
-            carros.forEach(carro => console.log(carro))
-        })
+        .then(data => cars = data.carros)
         .catch(err => console.log(err))
 
+    return cars
 }
 
 const showCar = async car => {
