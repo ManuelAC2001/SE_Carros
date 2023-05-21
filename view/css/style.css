@@ -18,7 +18,8 @@ html {
     --principal-font-color: #304e68;
 }
 
-.car__container {
+.car__container,
+.question__container {
     background: var(--main-color);
     height: 100vh;
     display: grid;
@@ -26,18 +27,17 @@ html {
     position: relative;
 }
 
-.car__header {
+.car__header,
+.question__header {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 
     /* background-color: var(--second-color); */
-    background-image: linear-gradient(
-        #5679FF,
-        #5678ffd8
-      ),
-       url("../img/hero_car.jpg");
+    background-image: linear-gradient(#5679FF,
+            #5678ffd8),
+        url("../img/hero_car.jpg");
 }
 
 
@@ -126,20 +126,21 @@ html {
     inset: 0;
     top: 85%;
     margin: auto;
-    width: 8.5rem;
+    width: 10rem;
     height: 2.5rem;
 
     border-radius: 2rem;
-    background: #424242 ;
+    background: #424242;
 
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+
 }
 
 .slider__member {
-    width : .65rem;
+    width: .65rem;
     height: .65rem;
     background-color: var(--circle-left);
     border-radius: 50%;
@@ -148,7 +149,73 @@ html {
 
 .slider__member:hover {
     cursor: pointer;
-    width : .85rem;
+    width: .85rem;
     height: .85rem;
     background-color: #ff9d0b;
+}
+
+.slider__submit {
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff9d0b;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.slider__submit:hover {
+    cursor: pointer;
+}
+
+.answers__container {
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    margin: auto;
+    width: 20rem;
+    height: 20rem;
+
+    display: grid;
+    grid-template-rows: 30%;
+}
+
+.answers__container legend {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.answer label { 
+    width: 100%;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+.answer label:hover {
+    cursor: pointer;
+}
+
+.answer {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: 0 1rem;
+    border-radius: .4rem;
+
+    background: var(--circle-right);
+    height: 3rem;
+    box-shadow: 5px 9px 74px 9px rgba(0, 0, 0, 0.31);
+    -webkit-box-shadow: 5px 9px 74px 9px rgba(0, 0, 0, 0.31);
+    -moz-box-shadow: 5px 9px 74px 9px rgba(0, 0, 0, 0.31);
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }

@@ -10,44 +10,9 @@
 
   <body>
     <main>
-      <section class="car__container">
-        <section class="car__information">
-          <section class="car__name">
-            <div>
-              <h2 class="car__brand"></h2>
-              <h3 class="car__model"></h3>
-            </div>
-          </section>
-
-          <section class="car__features">
-            <div>
-              <span>carroceria:</span>
-              <p></p>
-            </div>
-
-            <div>
-              <span>número de puertas</span>
-              <p></p>
-            </div>
-
-            <div>
-              <span>combustible:</span>
-              <p></p>
-            </div>
-
-            <div>
-              <span>transmisión:</span>
-              <p></p>
-            </div>
-
-            <div>
-              <span>precio:</span>
-              <p>$</p>
-            </div>
-          </section>
-        </section>
-
-        <section class="car__header"></section>
+      <section class="question__container">
+        <section></section>
+        <section class="question__header"></section>
       </section>
 
       <div class="circle">
@@ -57,21 +22,80 @@
 
       <div class="circle circle-outer-right"></div>
       <div class="circle circle-outer-left"></div>
+    </main>
 
-      <div class="car__img">
-        <picture>
-          <img src="../img/mx5nc.png" alt="mazda mx-5 NC" />
-        </picture>
+    <form class="question" id="form" method="POST">
+      <div class="answers__container">
+        <legend>¿Cual es el tipo de gasolina que desea?</legend>
+
+        <div class="answers" id="answersCombustible">
+          <div class="answer">
+            <input type="radio" name="combustible" value="gasolina" id="gasolina" />
+            <label for="gasolina"><p>gasolina</p></label>
+          </div>
+
+          <div class="answer">
+            <input type="radio" name="combustible" value="electrico" id="electrico" />
+            <label for="electrico"><p>electrico</p></label>
+          </div>
+        </div>
+
+        <div class="answers" id="answersTransmision">
+          <div class="answer">
+            <input type="radio" name="transmision" value="estandar" id="estandar" />
+            <label for="estandar"><p>estandar</p></label>
+          </div>
+
+          <div class="answer">
+            <input type="radio" name="transmision" value="automatico" id="automatico" />
+            <label for="automatico"><p>automatico</p></label>
+          </div>
+        </div>
+
+        <div class="answers" id="answersPuertas">
+          <div class="answer">
+            <input type="radio" name="numeropuertas" value="2" id="dos" />
+            <label for="dos"><p>2</p></label>
+          </div>
+
+          <div class="answer">
+            <input type="radio" name="numeropuertas" value="4" id="cuatro" />
+            <label for="cuatro"><p>4</p></label>
+          </div>
+        </div>
+
+        <div class="answers" id="answersCarroceria">
+          <div class="answer">
+            <input type="radio" name="carroceria" value="convertible" id="convertible" />
+            <label for="convertible"><p>convertible</p></label>
+          </div>
+
+          <div class="answer">
+            <input type="radio" name="carroceria" value="sedan" id="sedan" />
+            <label for="sedan"><p>sedan</p></label>
+          </div>
+
+          <div class="answer">
+            <input type="radio" name="carroceria" value="hatcback" id="hatcback" />
+            <label for="hatcback"><p>hatcback</p></label>
+          </div>
+
+          <div class="answer">
+            <input type="radio" name="carroceria" value="camioneta" id="camioneta" />
+            <label for="camioneta"><p>camioneta</p></label>
+          </div>
+
+        </div>
+
       </div>
 
       <div class="car__slider">
-        <div class="slider__member"></div>
-        <div class="slider__member"></div>
-        <div class="slider__member"></div>
+        <div class="slider__submit" id="btnSiguiente">
+          <input type="submit" value="siguiente"> 
+        </div>
       </div>
+    </form>
 
-    </main>
-
-    <script src="../js/main.js"></script>
+    <script src="../js/questionsHandler.js"></script>
   </body>
 </html>

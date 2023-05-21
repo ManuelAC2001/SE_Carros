@@ -1,7 +1,8 @@
 this.onload = async () => {
-
-    const cars = await filterCars()
+    const respuestas = JSON.parse(localStorage.getItem("respuestas"));
+    const cars = await filterCars(respuestas)
     showCar(cars[0])
+    
 }
 
 const getCars = async () => {
@@ -13,20 +14,12 @@ const getCars = async () => {
     return cars
 }
 
-const filterCars = async () => {
+const filterCars = async (respuestas) => {
     let cars = []
-
-    const dataExample = {
-        transmision: "automatico",
-        combustible: "electrico",
-        numeropuertas: 2,
-        carroceria: "convertible",
-    }
-
 
     await fetch("http://localhost:8000/buscar/carros", {
         method: "POST",
-        body: JSON.stringify(dataExample)
+        body: JSON.stringify(respuestas)
     })
         .then(response => response.json())
         .then(data => cars = data.carros)
@@ -58,7 +51,4 @@ const showCar = async car => {
         const featureText = featureDIV.querySelector("P")
         featureText.innerText += `${carFeaturesList[key]}`
     })
-
-
-
 }
