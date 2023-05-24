@@ -133,10 +133,27 @@ html {
     background: #424242;
 
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.slider__btn {
+    color: var(--circle-left);
+    font-size: 1.4rem;
+    font-weight: bold;
+    transition: all .5s ease-in-out;
+}
+
+.slider__btn:hover {
+    cursor: pointer;
+    color: #ff9d0b;
+}
+
+.slider__members {
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-
 }
 
 .slider__member {
@@ -157,26 +174,23 @@ html {
 .slider__submit {
     width: inherit;
     height: inherit;
-    border-radius: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ff9d0b;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
 .slider__submit input {
-    width: 100%;
+    width: inherit;
     background-color: transparent;
     border-radius: inherit;
     color: inherit;
     font-size: inherit;
     height: inherit;
-    font-weight: inherit;
     cursor: pointer;
     border: none;
+
+    color: #ff9d0b;
+
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 

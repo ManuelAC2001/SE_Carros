@@ -4,11 +4,7 @@
 
 % peticiones get
 :- http_handler('/', index_handler, []).
-:- http_handler('/buscar/carros', post_example, []).
-
-% :- http_handler('/buscar', post_example, []).
-
-
+:- http_handler('/buscar/carros', filter_cars_handler, []).
 
 % DEFINICION DE LOS HANDLERS PARA LAS PETICIONES GET
 index_handler(_Request):- 
@@ -37,7 +33,7 @@ filter_car_handler(Request):-
 
 
 % DEFINICION DE LOS HANDLERS PARA LAS PETICIONES POST
-post_example(Request) :-
+filter_cars_handler(Request) :-
         cors_enable,
         member(method(post), Request), !,
         http_read_data(Request, StringData, []),
