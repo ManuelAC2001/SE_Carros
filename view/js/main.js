@@ -9,6 +9,11 @@ this.addEventListener("load", async () => {
     let counterCar = 0
     let carroActual = filteredCars[counterCar]
 
+    if(filteredCars.length <= 1){
+        sliderBack.style.visibility = 'hidden'
+        sliderNext.style.visibility = 'hidden'
+    }
+
     showCar(carroActual)
 
     sliderNext.addEventListener("click", () => {
