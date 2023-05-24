@@ -167,9 +167,18 @@ html {
     text-transform: uppercase;
 }
 
-.slider__submit:hover {
+.slider__submit input {
+    width: 100%;
+    background-color: transparent;
+    border-radius: inherit;
+    color: inherit;
+    font-size: inherit;
+    height: inherit;
+    font-weight: inherit;
     cursor: pointer;
+    border: none;
 }
+
 
 .answers__container {
     position: absolute;
@@ -188,7 +197,7 @@ html {
     font-size: 1.8rem;
 }
 
-.answer label { 
+.answer label {
     width: 100%;
     height: inherit;
     display: flex;
