@@ -102,12 +102,13 @@ const showCar = async car => {
 
         const featureDIV = carFeaturesHTML.children[iterator]
         const featureText = featureDIV.querySelector("P")
+        
+        featureText.innerHTML = `${value}`
 
         if(feature == "precio") {
             featureText.innerHTML = `$${value}`
         }
         
-        featureText.innerHTML = `${value}`
     })
 
 }
