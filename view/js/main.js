@@ -16,26 +16,26 @@ this.addEventListener("load", async () => {
         counterCar++
         carroActual = filteredCars[counterCar]
 
-        if(!carroActual){
+        if (!carroActual) {
             counterCar = filteredCars.length - 1
             carroActual = filteredCars[counterCar]
             return
         }
         showCar(carroActual)
-        
+
     })
-    
+
     sliderBack.addEventListener("click", () => {
-        
+
         counterCar--
         carroActual = filteredCars[counterCar]
-        
-        if(!carroActual){
+
+        if (!carroActual) {
             counterCar = 0
             carroActual = filteredCars[counterCar]
             return
         }
-        
+
         showCar(carroActual)
     })
 
@@ -102,13 +102,13 @@ const showCar = async car => {
 
         const featureDIV = carFeaturesHTML.children[iterator]
         const featureText = featureDIV.querySelector("P")
-        
+
         featureText.innerHTML = `${value}`
 
-        if(feature == "precio") {
+        if (feature === "precio") {
             featureText.innerHTML = `$${value}`
         }
-        
+
     })
 
 }
