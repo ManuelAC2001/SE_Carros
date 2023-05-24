@@ -8,20 +8,25 @@ this.addEventListener("load", async () => {
 
     let counterCar = 0
     let carroActual = filteredCars[counterCar]
-
+    
     showCar(carroActual)
-
+    
     sliderNext.addEventListener("click", () => {
 
         counterCar++
         carroActual = filteredCars[counterCar]
+        sliderBack.style.visibility = 'visible'
 
+        
         if (!carroActual) {
             counterCar = filteredCars.length - 1
             carroActual = filteredCars[counterCar]
+            sliderNext.style.visibility = 'hidden'
             return
         }
+
         showCar(carroActual)
+
 
     })
 
@@ -29,10 +34,12 @@ this.addEventListener("load", async () => {
 
         counterCar--
         carroActual = filteredCars[counterCar]
+        sliderNext.style.visibility = 'visible'
 
         if (!carroActual) {
             counterCar = 0
             carroActual = filteredCars[counterCar]
+            sliderBack.style.visibility = 'hidden'
             return
         }
 
@@ -40,20 +47,6 @@ this.addEventListener("load", async () => {
     })
 
 })
-
-const setSlider = cars => {
-    if (!cars) return
-
-    const numberOfCars = cars.length
-
-    if (numberOfCars <= 1) {
-        sliderNext.style.visibility = "hidden"
-        sliderBack.style.visibility = "hidden"
-    }
-
-}
-
-
 
 const getCars = async () => {
     let cars = []
