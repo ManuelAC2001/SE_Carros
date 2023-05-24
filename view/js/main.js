@@ -22,7 +22,6 @@ this.addEventListener("load", async () => {
             return
         }
         showCar(carroActual)
-        console.log(carroActual);
         
     })
     
