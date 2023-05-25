@@ -40,6 +40,15 @@ html {
         url("../img/hero_car.jpg");
 }
 
+.car__header {
+    color: var(--circle-right);
+    font-size: 12rem;
+    display: flex;
+    justify-content: end;
+    font-weight: bold;
+    align-items: start;
+}
+
 
 .circle {
     display: grid;

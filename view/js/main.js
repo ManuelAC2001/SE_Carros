@@ -14,6 +14,9 @@ this.addEventListener("load", async () => {
         sliderNext.style.visibility = 'hidden'
     }
 
+    carroActual.id = counterCar + 1
+
+
     showCar(carroActual)
 
     sliderNext.addEventListener("click", () => {
@@ -21,14 +24,15 @@ this.addEventListener("load", async () => {
         counterCar++
         carroActual = filteredCars[counterCar]
         sliderBack.style.visibility = 'visible'
-
-
+        
+        
         if (!carroActual) {
             counterCar = filteredCars.length - 1
             carroActual = filteredCars[counterCar]
             sliderNext.style.visibility = 'hidden'
             return
         }
+        carroActual.id = counterCar + 1
 
         showCar(carroActual)
 
@@ -40,13 +44,14 @@ this.addEventListener("load", async () => {
         counterCar--
         carroActual = filteredCars[counterCar]
         sliderNext.style.visibility = 'visible'
-
+        
         if (!carroActual) {
             counterCar = 0
             carroActual = filteredCars[counterCar]
             sliderBack.style.visibility = 'hidden'
             return
         }
+        carroActual.id = counterCar + 1
 
         showCar(carroActual)
     })
@@ -82,12 +87,14 @@ const showCar = async car => {
     const carModelHTML = document.querySelector(".car__model")
     const carFeaturesHTML = document.querySelector(".car__features")
     const imgHTML = document.querySelector(".car__img img")
+    const numberCar = document.querySelector(".car__number")
 
     imgHTML.src = `../img/cars/${car.img}`
 
     carBrandHTML.innerText = car.marca
     carModelHTML.innerText = `${car.modelo} ${car.generacion}`
     carModelHTML.innerHTML += ` <span>${car.anio}</span>`
+    numberCar.innerHTML = `#${car.id}`
 
     const { carroceria, numeropuertas, combustible, transmision, precio } = car
 
