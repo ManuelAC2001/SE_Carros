@@ -11,6 +11,11 @@ generacion("mx-5", "NA").
 generacion("mx-5", "NB").
 generacion("mx-5", "NC").
 
+% fotos de las generaciones
+fotoGeneracion("NA", "mx5na.png").
+fotoGeneracion("NB", "mx5nb.png").
+fotoGeneracion("NC", "mx5nc.png").
+
 % anio de fabricacion del modelo mx-5
 anioFabricacion("NA", 1989).
 anioFabricacion("NB", 2005).
@@ -137,6 +142,9 @@ getCarro(Carro):-
     marca(Marca),
     modelo(Marca, Modelo),
     generacion(Modelo, Generacion),
+
+    fotoGeneracion(Generacion, Img),
+
     anioFabricacion(Generacion, Anio),
     carroceria(Generacion, Carroceria),
     numero_puertas(carroceria(Generacion, Carroceria), NumeroPuertas),
@@ -165,7 +173,8 @@ getCarro(Carro):-
         numeropuertas:NumeroPuertas, 
         transmision:Transmision, 
         combustible:Combustible,
-        precio:Precio
+        precio:Precio,
+        img:Img
     }.
 
 buscarCarro(Nombre, Propiedad, Carro):-

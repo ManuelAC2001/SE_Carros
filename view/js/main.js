@@ -81,6 +81,9 @@ const showCar = async car => {
     const carBrandHTML = document.querySelector(".car__brand")
     const carModelHTML = document.querySelector(".car__model")
     const carFeaturesHTML = document.querySelector(".car__features")
+    const imgHTML = document.querySelector(".car__img img")
+
+    imgHTML.src = `../img/cars/${car.img}`
 
     carBrandHTML.innerText = car.marca
     carModelHTML.innerText = `${car.modelo} ${car.generacion}`
