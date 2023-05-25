@@ -65,9 +65,27 @@ string_to_json(String, RespuestaJSON) :-
     member(numeropuertas=Numeropuertas,Atributos),
     member(carroceria=Carroceria,Atributos),
 
+    (
+         Combustible == x ->
+             CombustibleRespuesta = _;
+         CombustibleRespuesta = Combustible
+     ),
+
+     (
+         Transmision == x ->
+             TransmisionRespuesta = _;
+         TransmisionRespuesta = Transmision
+     ),
+
+     (
+         Numeropuertas == x ->
+             NumeropuertasRespuesta = _;
+         NumeropuertasRespuesta = Numeropuertas
+     ),
+
     RespuestaJSON = _{
-        transmision:Transmision,
-        combustible:Combustible,
-        numeropuertas:Numeropuertas,
+        transmision:TransmisionRespuesta,
+        combustible:CombustibleRespuesta,
+        numeropuertas:NumeropuertasRespuesta,
         carroceria:Carroceria
     }.

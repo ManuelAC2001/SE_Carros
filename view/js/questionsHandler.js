@@ -35,7 +35,10 @@ this.onload = () => {
         }
 
         if (respuestas.numeropuertas) {
-            respuestas.numeropuertas = parseInt(respuestas.numeropuertas)
+            
+            if(!isNaN(respuestas.numeropuertas)){
+                respuestas.numeropuertas = parseInt(respuestas.numeropuertas)
+            }
             answersPuertas.style.display = 'none'
             answersCarroceria.style.display = 'flex'
             legendAnswers.textContent = "¿Cual es el tipo de carroceria que desea?"
