@@ -11,11 +11,6 @@ generacion("mx-5", "NA").
 generacion("mx-5", "NB").
 generacion("mx-5", "NC").
 
-% fotos de las generaciones
-fotoGeneracion("NA", "mx5na.png").
-fotoGeneracion("NB", "mx5nb.png").
-fotoGeneracion("NC", "mx5nc.png").
-
 % anio de fabricacion del modelo mx-5
 anioFabricacion("NA", 1989).
 anioFabricacion("NB", 2005).
@@ -25,6 +20,11 @@ anioFabricacion("NC", 2015).
 carroceria("NA", convertible).
 carroceria("NB",convertible).
 carroceria("NC",convertible).
+
+% fotos de la carroceria de la generacion del modelo
+fotoCarroceria(carroceria("NA", convertible), "mx5na.png").
+fotoCarroceria(carroceria("NB", convertible), "mx5nb.png").
+fotoCarroceria(carroceria("NC", convertible), "mx5nc.png").
 
 % numero de puertas que tiene cada generacion dependiendo de su carroceria
 numero_puertas(carroceria("NA", convertible), 2).
@@ -142,14 +142,13 @@ getCarro(Carro):-
     marca(Marca),
     modelo(Marca, Modelo),
     generacion(Modelo, Generacion),
-
-    fotoGeneracion(Generacion, Img),
-
     anioFabricacion(Generacion, Anio),
     carroceria(Generacion, Carroceria),
     numero_puertas(carroceria(Generacion, Carroceria), NumeroPuertas),
     transmision(carroceria(Generacion, Carroceria), Transmision),
     combustible(carroceria(Generacion, Carroceria), Combustible),
+
+    fotoCarroceria(carroceria(Generacion, Carroceria), Img),
 
     Caracteristicas = [
         Marca, 
