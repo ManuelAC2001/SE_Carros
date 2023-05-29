@@ -93,8 +93,8 @@ html {
     z-index: 20;
     inset: 0;
     margin: auto;
-    width: 48rem;
-    height: 28rem;
+    /* width: 48rem; */
+    /* height: 28rem; */
 }
 
 .car__information {
