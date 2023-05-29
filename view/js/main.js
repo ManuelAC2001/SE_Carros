@@ -9,7 +9,7 @@ this.addEventListener("load", async () => {
     let counterCar = 0
     let carroActual = filteredCars[counterCar]
 
-    if(filteredCars.length <= 1){
+    if (filteredCars.length <= 1) {
         sliderBack.style.visibility = 'hidden'
         sliderNext.style.visibility = 'hidden'
     }
@@ -24,8 +24,8 @@ this.addEventListener("load", async () => {
         counterCar++
         carroActual = filteredCars[counterCar]
         sliderBack.style.visibility = 'visible'
-        
-        
+
+
         if (!carroActual) {
             counterCar = filteredCars.length - 1
             carroActual = filteredCars[counterCar]
@@ -44,7 +44,7 @@ this.addEventListener("load", async () => {
         counterCar--
         carroActual = filteredCars[counterCar]
         sliderNext.style.visibility = 'visible'
-        
+
         if (!carroActual) {
             counterCar = 0
             carroActual = filteredCars[counterCar]
@@ -77,6 +77,13 @@ const filterCars = async (respuestas) => {
         .then(response => response.json())
         .then(data => cars = data.carros)
         .catch(err => console.log(err))
+
+    // carritos = cars.filter(
+    //     car =>  car.carroceria === 'sedan' &&
+    //             car.modelo === 'aveo'
+    // )
+
+    // console.log(carritos);
 
     return cars
 }

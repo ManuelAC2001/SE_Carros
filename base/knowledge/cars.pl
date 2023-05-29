@@ -107,16 +107,16 @@ fotoCarroceria(carroceria("8Y",sedan), "A38Ysedan.png").
 fotoCarroceria(carroceria("T200", hatchback), "AveoT200Hatchback.png").
 fotoCarroceria(carroceria("T200", sedan), "AveoT200Sedan.png").
 
-fotoCarroceria(carroceria("T250", hatchback), "").
-fotoCarroceria(carroceria("T250", sedan), "").
+fotoCarroceria(carroceria("T250", hatchback), "AveoT250Hatchback.png").
+fotoCarroceria(carroceria("T250", sedan), "AveoT250Sedan.png").
 
-fotoCarroceria(carroceria("T300", hatchback), "").
-fotoCarroceria(carroceria("T300", sedan), "").
+fotoCarroceria(carroceria("T300", hatchback), "AveoT300Hatchback.png").
+fotoCarroceria(carroceria("T300", sedan), "AveoT300Sedan.png").
 
-fotoCarroceria(carroceria("Sail", sedan), "").
+fotoCarroceria(carroceria("Sail", sedan), "AveoSailSedan.png").
 
-fotoCarroceria(carroceria("310C", hatchback), "").
-fotoCarroceria(carroceria("310C", sedan), "").
+fotoCarroceria(carroceria("310C", hatchback), "Aveo310CHatchback.png").
+fotoCarroceria(carroceria("310C", sedan), "Aveo310Sedan.png").
 
 % numero de puertas que tiene cada generacion del modelo mx5 dependiendo de su carroceria
 numero_puertas(carroceria("NA", convertible), 2).
@@ -239,8 +239,9 @@ combustible(carroceria("T300", sedan),gasolina).
 
 combustible(carroceria("Sail", sedan),gasolina).
 
-combustible(carroceria("T310", hatchback),gasolina).
-combustible(carroceria("T310", sedan),gasolina).
+combustible(carroceria("310C", hatchback),gasolina).
+combustible(carroceria("310C", sedan),gasolina).
+
 
 % precio de la carroceria junto a su generacion para el modelo mx-5
 precioCarroceria(carroceria("NA", convertible), 1500).
@@ -361,10 +362,10 @@ precioTransmision(transmision(carroceria("8Y",sedan), automatico),
 
 
 % precio de la transmision para cada generacion junto con su carroceria para el modelo aveo
-precioTransmision(combustible(carroceria("T200", hatchback), estandar), 
+precioTransmision(transmision(carroceria("T200", hatchback), estandar), 
     25_250
 ).
-precioTransmision(combustible(carroceria("T200", sedan), automatico), 
+precioTransmision(transmision(carroceria("T200", sedan), estandar), 
     25_500
 ).
 
@@ -500,6 +501,15 @@ precioCombustible(combustible(carroceria("T300", hatchback),gasolina),
 precioCombustible(combustible(carroceria("T300", sedan),gasolina), 
     45_650
 ).
+
+precioCombustible(combustible(carroceria("310C", hatchback),gasolina), 
+    48_700
+).
+
+precioCombustible(combustible(carroceria("310C", sedan),gasolina), 
+    48_760
+).
+
 
 % FIN DE LA BASE DE CONOCIMIENTOS
 
