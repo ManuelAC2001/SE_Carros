@@ -6,6 +6,12 @@ this.addEventListener("load", async () => {
     const sliderBack = document.getElementById("sliderBack")
     const sliderNext = document.getElementById("sliderNext")
 
+
+    if(!filteredCars.length){
+        window.location.replace("../templates/index.html");
+        return
+    }
+
     let counterCar = 0
     let carroActual = filteredCars[counterCar]
 
@@ -77,13 +83,6 @@ const filterCars = async (respuestas) => {
         .then(response => response.json())
         .then(data => cars = data.carros)
         .catch(err => console.log(err))
-
-    // carritos = cars.filter(
-    //     car =>  car.carroceria === 'sedan' &&
-    //             car.modelo === 'aveo'
-    // )
-
-    // console.log(carritos);
 
     return cars
 }

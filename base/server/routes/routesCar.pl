@@ -12,26 +12,6 @@ index_handler(_Request):-
     findall(Carro, getCarro(Carro), Lista),
     reply_json_dict(_{carros:Lista}).
 
-filter_car_handler(Request):-
-    cors_enable,
-    http_parameters(Request, [ 
-        transmision(Transmision, [sting]),
-        combustible(Combustible, [sting]),
-        numeroPuertas(NumeroPuertas, [integer]),
-        carroceria(Carroceria, [sting])
-    ]),
-
-    Respuestas = [
-        Transmision,
-        Combustible,
-        Carroceria,
-        NumeroPuertas
-    ],
-
-    findall(Carro, filtrarCarro(Carro, Respuestas), Lista),
-    reply_json_dict(_{carros:Lista}).
-
-
 % DEFINICION DE LOS HANDLERS PARA LAS PETICIONES POST
 filter_cars_handler(Request) :-
         cors_enable,
