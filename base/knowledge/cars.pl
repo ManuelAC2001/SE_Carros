@@ -6,6 +6,7 @@ marca(audi).
 marca(chevrolet).
 marca(rivian).
 marca(tesla).
+marca(honda).
 
 
 % modelo mx-5
@@ -23,6 +24,9 @@ modelo(rivian, "R1T").
 % modelo model3
 modelo(tesla, "model3").
 modelo(tesla, "model2").
+
+% modelo civic
+modelo(honda, "civic").
 
 
 % generaciones de cada modelo mx-5
@@ -49,6 +53,9 @@ generacion("R1T", "R1TA").
 % generaciones del modelo model3 
 generacion("model3", "TM3-1").
 generacion("model2", "TM2-1").
+
+% generaciones del modelo civic 
+generacion("civic", "coupe").
 
 
 % anio de fabricacion del modelo mx-5
@@ -78,6 +85,9 @@ anioFabricacion("TM3-1", 2016).
 
 % anio de fabricacion del modelo model2
 anioFabricacion("TM2-1", 2014).
+
+% anio de fabricacion del modelo civic
+anioFabricacion("coupe", 2017).
 
 
 % carroceria de las generaciones del modelo mx-5
@@ -124,6 +134,9 @@ carroceria("TM3-1", sedan).
 % carroceria de las generaciones del modelo model2
 carroceria("TM2-1", hatchback).
 
+% carroceria de las generaciones del modelo coupe
+carroceria("coupe", sedan).
+
 
 % fotos de la carroceria de la generacion del modelo mx-5 con su respectiva carroceria
 fotoCarroceria(carroceria("NA", convertible), "mx5na.png").
@@ -166,6 +179,10 @@ fotoCarroceria(carroceria("TM3-1", sedan), "TeslaModel3.png").
 
 % fotos de la carroceria de la generacion del modelo model2 con su respectiva carroceria
 fotoCarroceria(carroceria("TM2-1", hatchback), "TeslaModel2.png").
+
+
+% fotos de la carroceria de la generacion del modelo civic con su respectiva carroceria
+fotoCarroceria(carroceria("coupe", sedan), "HondaCivicCoupe.png").
 
 
 % numero de puertas que tiene cada generacion del modelo mx5 dependiendo de su carroceria
@@ -213,6 +230,9 @@ numero_puertas(carroceria("TM3-1", sedan), 4).
 
 % numero de puertas que tiene cada generacion del modelo model2 dependiendo de su carroceria
 numero_puertas(carroceria("TM2-1", hatchback), 4).
+
+% numero de puertas que tiene cada generacion del modelo mx5 dependiendo de su carroceria
+numero_puertas(carroceria("coupe", sedan), 2).
 
 
 % transmisiones disponibles que tiene cada generacion junto con su carroceria del modelo mx-5
@@ -283,6 +303,10 @@ transmision(carroceria("TM3-1", sedan),  automatico).
 transmision(carroceria("TM2-1", hatchback),  estandar).
 transmision(carroceria("TM2-1", hatchback),  automatico).
 
+% transmisiones disponibles que tiene cada generacion junto con su carroceria del modelo mx-5
+transmision(carroceria("coupe", sedan),  estandar).
+transmision(carroceria("coupe", sedan),  automatico).
+
 
 % combustibles disponibles que tiene cada generacion junto con su carroceria del modelo A3
 combustible(carroceria("NA", convertible), gasolina).
@@ -334,6 +358,10 @@ combustible(carroceria("TM3-1", sedan), electrico).
 combustible(carroceria("TM2-1", hatchback), electrico).
 
 
+% combustibles disponibles que tiene cada generacion junto con su carroceria del modelo A3
+combustible(carroceria("coupe", sedan), gasolina).
+
+
 % precio de la carroceria junto a su generacion para el modelo mx-5
 precioCarroceria(carroceria("NA", convertible), 1500).
 precioCarroceria(carroceria("NB", convertible), 2300).
@@ -379,6 +407,10 @@ precioCarroceria(carroceria("TM3-1", sedan), 100_530).
 
 % precio de la carroceria junto a su generacion para el modelo modelo2
 precioCarroceria(carroceria("TM2-1", hatchback), 99_250).
+
+
+% precio de la carroceria junto a su generacion para el modelo mx-5
+precioCarroceria(carroceria("coupe", sedan), 10_555).
 
 
 % precio de la transmision para cada generacion junto con su carroceria para el modelo mx-5
@@ -532,10 +564,10 @@ precioTransmision(transmision(carroceria("R1TA", camioneta), estandar),
 
 % precio de la transmision para cada generacion junto con su carroceria para el modelo model3
 precioTransmision(transmision(carroceria("TM3-1", sedan),  estandar), 
-    10_300
+    100_300
 ).
 precioTransmision(transmision(carroceria("TM3-1", sedan),  automatico), 
-    10_400
+    100_400
 ).
 
 
@@ -545,6 +577,14 @@ precioTransmision(transmision(carroceria("TM2-1", hatchback),  estandar),
 ).
 precioTransmision(transmision(carroceria("TM2-1", hatchback),  automatico), 
     95_400
+).
+
+% precio de la transmision para cada generacion junto con su carroceria para el modelo mx-5
+precioTransmision(transmision(carroceria("coupe", sedan),  estandar),   
+    26_700
+).
+precioTransmision(transmision(carroceria("coupe", sedan),  automatico), 
+    26_890
 ).
 
 
@@ -659,6 +699,12 @@ precioCombustible(combustible(carroceria("TM3-1", sedan), electrico),
 precioCombustible(combustible(carroceria("TM2-1", hatchback), electrico), 
     12_500
 ).
+
+% precio del combustible para cada generacion junto con su carroceria para el modelo mx-5
+precioCombustible(combustible(carroceria("coupe", sedan), gasolina), 
+    4750
+).
+
 
 % FIN DE LA BASE DE CONOCIMIENTOS
 
