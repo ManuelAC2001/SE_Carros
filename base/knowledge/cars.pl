@@ -5,6 +5,7 @@ marca(mazda).
 marca(audi).
 marca(chevrolet).
 marca(rivian).
+marca(tesla).
 
 
 % modelo mx-5
@@ -18,6 +19,10 @@ modelo(chevrolet, "aveo").
 
 %modelo R1T
 modelo(rivian, "R1T").
+
+% modelo model3
+modelo(tesla, "model3").
+
 
 % generaciones de cada modelo mx-5
 generacion("mx-5", "NA").
@@ -40,6 +45,9 @@ generacion("aveo", "310C").
 % generaciones del modelo R1TA 
 generacion("R1T", "R1TA").
 
+% generaciones del modelo model3 
+generacion("model3", "TM3-1").
+
 
 % anio de fabricacion del modelo mx-5
 anioFabricacion("NA", 1989).
@@ -61,6 +69,10 @@ anioFabricacion("310C", 2023).
 
 % anio de fabricacion del modelo R1TA
 anioFabricacion("R1TA", 2021).
+
+% anio de fabricacion del modelo model3
+anioFabricacion("TM3-1", 2016).
+
 
 % carroceria de las generaciones del modelo mx-5
 carroceria("NA", convertible).
@@ -99,6 +111,10 @@ carroceria("310C", sedan).
 carroceria("R1TA", camioneta).
 
 
+% carroceria de las generaciones del modelo model3
+carroceria("TM3-1", sedan).
+
+
 % fotos de la carroceria de la generacion del modelo mx-5 con su respectiva carroceria
 fotoCarroceria(carroceria("NA", convertible), "mx5na.png").
 fotoCarroceria(carroceria("NB", convertible), "mx5nb.png").
@@ -134,6 +150,9 @@ fotoCarroceria(carroceria("310C", sedan), "Aveo310Sedan.png").
 
 % fotos de la carroceria de la generacion del modelo R1TA con su respectiva carroceria
 fotoCarroceria(carroceria("R1TA", camioneta), "RivianR1T.png").
+
+% fotos de la carroceria de la generacion del modelo mx-5 con su respectiva carroceria
+fotoCarroceria(carroceria("TM3-1", sedan), "TeslaModel3.png").
 
 
 % numero de puertas que tiene cada generacion del modelo mx5 dependiendo de su carroceria
@@ -174,6 +193,9 @@ numero_puertas(carroceria("310C", sedan), 4).
 % numero de puertas que tiene cada generacion del modelo R1TA dependiendo de su carroceria
 numero_puertas(carroceria("R1TA", camioneta), 4).
 
+
+% numero de puertas que tiene cada generacion del modelo model3 dependiendo de su carroceria
+numero_puertas(carroceria("TM3-1", sedan), 4).
 
 % transmisiones disponibles que tiene cada generacion junto con su carroceria del modelo mx-5
 transmision(carroceria("NA", convertible),  estandar).
@@ -234,6 +256,11 @@ transmision(carroceria("R1TA", camioneta), automatico).
 transmision(carroceria("R1TA", camioneta), estandar).
 
 
+% transmisiones disponibles que tiene cada generacion junto con su carroceria del modelo model3
+transmision(carroceria("TM3-1", sedan),  estandar).
+transmision(carroceria("TM3-1", sedan),  automatico).
+
+
 % combustibles disponibles que tiene cada generacion junto con su carroceria del modelo A3
 combustible(carroceria("NA", convertible), gasolina).
 
@@ -275,6 +302,11 @@ combustible(carroceria("310C", sedan),gasolina).
 combustible(carroceria("R1TA", camioneta) ,electrico).
 combustible(carroceria("R1TA", camioneta) , gasolina).
 
+
+% combustibles disponibles que tiene cada generacion junto con su carroceria del modelo model3
+combustible(carroceria("TM3-1", sedan), electrico).
+
+
 % precio de la carroceria junto a su generacion para el modelo mx-5
 precioCarroceria(carroceria("NA", convertible), 1500).
 precioCarroceria(carroceria("NB", convertible), 2300).
@@ -312,6 +344,10 @@ precioCarroceria(carroceria("310C", sedan), 10_720).
 
 % precio de la carroceria junto a su generacion para el modelo R1TA
 precioCarroceria(carroceria("R1TA", camioneta), 90_720).
+
+
+% precio de la carroceria junto a su generacion para el modelo model3
+precioCarroceria(carroceria("TM3-1", sedan), 100_530).
 
 
 % precio de la transmision para cada generacion junto con su carroceria para el modelo mx-5
@@ -462,6 +498,14 @@ precioTransmision(transmision(carroceria("R1TA", camioneta), estandar),
     86_590
 ).
 
+% precio de la transmision para cada generacion junto con su carroceria para el modelo model3
+precioTransmision(transmision(carroceria("TM3-1", sedan),  estandar), 
+    10_300
+).
+precioTransmision(transmision(carroceria("TM3-1", sedan),  automatico), 
+    10_400
+).
+
 
 % precio del combustible para cada generacion junto con su carroceria para el modelo mx-5
 precioCombustible(
@@ -562,6 +606,11 @@ precioCombustible(combustible(carroceria("R1TA", camioneta) ,electrico),
 ).
 precioCombustible(combustible(carroceria("R1TA", camioneta) , gasolina), 
     75_455
+).
+
+% precio del combustible para cada generacion junto con su carroceria para el modelo model3
+precioCombustible(combustible(carroceria("TM3-1", sedan), electrico), 
+    14_500
 ).
 
 % FIN DE LA BASE DE CONOCIMIENTOS
