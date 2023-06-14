@@ -815,4 +815,3 @@ filtrarCarro(Carro, Respuestas):-
     buscarCarro(NumeroPuertas, "numero_puertas", Carro).
 
 % FIN DEL MOTOR DE INFERENCIA
-% filtrarCarro(Carro, [estandar, electrico, camioneta, 2]).

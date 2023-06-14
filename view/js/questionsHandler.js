@@ -14,7 +14,7 @@ this.onload = () => {
     answersPuertas.style.display = 'none'
     answersCarroceria.style.display = 'none'
 
-
+    
     form.addEventListener("submit", event => {
         event.preventDefault()
 
