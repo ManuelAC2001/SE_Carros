@@ -59,34 +59,4 @@ this.onload = () => {
         localStorage.setItem("respuestas", JSON.stringify(respuestas));
         window.location.replace("../templates/cars.html");
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // form.addEventListener("submit", event => {
-    //     event.preventDefault()
-
-    //     let respuestas = {}
-    //     new FormData(form).forEach((value, key) => respuestas[key] = value);
-
-    //     console.log(respuestas)
-
-    //     // localStorage.setItem("respuestas", JSON.stringify(respuestas));
-    //     // window.location.replace("../templates/cars.html");
-    // })
 }
-
