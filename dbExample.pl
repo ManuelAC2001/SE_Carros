@@ -1,4 +1,3 @@
-:- dynamic brand/1.
 :- use_module(library(odbc)).
 
 conectar :- odbc_connect('prologNS', _, [
@@ -11,7 +10,16 @@ conectar :- odbc_connect('prologNS', _, [
 :- conectar.
 
 brand(Brand):-
-  odbc_query('db', 'SELECT name FROM brands', row(Brand)).
+  odbc_query('db', 'CALL get_brands', row(Brand)).
 
-get_brands(Brands):-
-  findall(Brand, brand(Brand), Brands).
+model(Brand, Model):-
+  odbc_query('db', 'CALL get_models', row(Brand, Model)).
+
+get_car(Car):-
+  brand(Brand),
+  model(Brand, Model),
+
+  Car = _{
+    brand:Brand,
+    model: Model
+  }.
