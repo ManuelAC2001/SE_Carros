@@ -24,7 +24,7 @@ year_of_production(Generation, Year):-
   odbc_query('db', 'CALL get_generations', row(_, Generation, Year)).
 
 body(Body):-
-  odbc_query('db', 'SELECT name FROM bodies', row(Body)).
+  odbc_query('db', 'CALL get_bodies', row(Body)).
 
 body_generation(Generation, Body):-
   odbc_query('db', 'CALL get_bodies_generations', row(Generation, Body)).
