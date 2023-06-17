@@ -73,8 +73,8 @@ anioFabricacion("8Y", 2020).
 anioFabricacion("T200", 2002).
 anioFabricacion("T250", 2005).
 anioFabricacion("T300", 2012).
-anioFabricacion("Sail", 2017).
 anioFabricacion("310C", 2023).
+anioFabricacion("Sail", 2017).
 
 % anio de fabricacion del modelo R1TA
 anioFabricacion("R1TA", 2021).
@@ -92,8 +92,8 @@ anioFabricacion("coupe", 2017).
 
 % carroceria de las generaciones del modelo mx-5
 carroceria("NA", convertible).
-carroceria("NB",convertible).
-carroceria("NC",convertible).
+carroceria("NB", convertible).
+carroceria("NC", convertible).
 
 % carroceria de las generaciones del modelo A3
 carroceria("8L", hatchback).
