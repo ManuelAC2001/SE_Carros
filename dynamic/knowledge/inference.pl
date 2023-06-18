@@ -1,4 +1,4 @@
-:- consult("./base/knowledge/carsDynamic.pl").
+:- consult("./dynamic/knowledge/carsDynamic.pl").
 
 get_car(Car):-
   brand(Brand),

@@ -1,15 +1,21 @@
-DELIMITER / / CREATE PROCEDURE get_body_photos() BEGIN
-SELECT
-  generations.name AS generation,
-  bodies.name AS body,
-  src
-FROM
-  car_photos
-  LEFT JOIN part_categories ON car_photos.part_category_id = part_categories.id
-  LEFT JOIN bodies_generations ON car_photos.body_generartion_id = bodies_generations.id
-  LEFT JOIN bodies ON bodies_generations.body_id = bodies.id
-  LEFT JOIN generations ON bodies_generations.generation_id = generations.id
-WHERE
-  category = 'Body';
+DELIMITER //
+  CREATE PROCEDURE get_transmission_body()
+  BEGIN
+    SELECT 
+    generations.name AS generation,
+    bodies.name AS body,
+    transmissions.name AS transmission
 
-END / / DELIMITER;
+    FROM bodies_generations_transmissions
+
+    INNER JOIN bodies_generations
+    ON bodies_generations_transmissions.body_generation_id =  bodies_generations.id
+    INNER JOIN generations
+    ON bodies_generations.generation_id = generations.id
+    INNER JOIN bodies
+    ON bodies_generations.body_id = bodies.id
+
+    INNER JOIN transmissions
+    ON bodies_generations_transmissions.transmission_id = transmissions.id;
+  END //
+DELIMITER ;

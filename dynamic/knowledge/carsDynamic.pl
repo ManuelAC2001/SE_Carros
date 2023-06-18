@@ -11,7 +11,7 @@ connect :-
 
 :- connect.
 
-brand(Brand):-
+brand(Brand):-        
   odbc_query('db', 'CALL get_brands', row(Brand)).
 
 model(Brand, Model):-
@@ -27,7 +27,24 @@ body(Body):-
   odbc_query('db', 'CALL get_bodies', row(Body)).
 
 body_generation(Generation, Body):-
+  body(Body),
   odbc_query('db', 'CALL get_bodies_generations', row(Generation, Body)).
+
+% Number of doors availables in the knowledge base
+doors(Doors):-
+  odbc_query('db', 'CALL get_number_doors', row(Doors)).
+
+% Number of doors in a car
+number_of_doors(body_generation(Generation, Body), Doors):-
+  doors(Doors),
+  odbc_query('db', 'CALL get_number_doors_body', row(Generation, Body, Doors)).
 
 photo_body(body_generation(Generation, Body), Photo):-
   odbc_query('db', 'CALL get_body_photos', row(Generation, Body, Photo)).
+
+transmission(Transmission):-
+  odbc_query('db', 'CALL get_transmissions', row(Transmission)).
+
+transmission_body(body_generation(Generation, Body), Transmission):-
+  transmission(Transmission),
+  odbc_query('db', 'CALL get_transmission_body;', row(Generation, Body, Transmission)).
