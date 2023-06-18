@@ -47,4 +47,4 @@ transmission(Transmission):-
 
 transmission_body(body_generation(Generation, Body), Transmission):-
   transmission(Transmission),
-  odbc_query('db', 'CALL get_transmission_body;', row(Generation, Body, Transmission)).
+  odbc_query('db', 'CALL get_transmission_body', row(Generation, Body, Transmission)).
