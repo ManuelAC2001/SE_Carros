@@ -5,8 +5,11 @@ get_car(Car):-
   model(Brand, Model),
   generation(Model, Generation),
   body_generation(Generation, Body),
+
   photo_body(body_generation(Generation, Body), Photo),
   number_of_doors(body_generation(Generation, Body), Doors),
+
+  transmission(Transmission),
   transmission_body(body_generation(Generation, Body), Transmission),
 
   Car = _{
@@ -14,8 +17,8 @@ get_car(Car):-
     model: Model,
     generation:Generation, 
     body:Body,
-    transmission:Transmission,
     doors:Doors,
+    transmission:Transmission,
     photo:Photo
   }.
 
@@ -42,3 +45,11 @@ find_car(Value, Property, Car):-
     Property == 'transmission' ->
       Value = Car.transmission
   ).
+
+
+% show_test:-
+%   forall(
+%     transmission_body(body_generation(Generation, Body), Transmission), 
+%     % writeln(body_generation(Generation, Body), Transmission)
+%     writeln(body_generation(Generation, Body), Transmission)
+%   ).
