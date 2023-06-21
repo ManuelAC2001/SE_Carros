@@ -45,3 +45,10 @@ transmission(Transmission):-
 
 transmission_body(body_generation(Generation, Body), Transmission):-
   odbc_query('db', 'CALL get_transmissions_bodies', row(Generation, Body, Transmission)).
+
+fuel(Fuel):-
+  odbc_query('db', 'CALL get_fuels', row(Fuel)).
+
+fuel_body(transmission_body(body_generation(Generation, Body), Transmission), Fuel):-
+  Row = row(Generation, Body, Transmission, Fuel),
+  odbc_query('db', 'CALL get_fuels_bodies', Row).

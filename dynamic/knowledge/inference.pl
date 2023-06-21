@@ -7,10 +7,15 @@ get_car(Car):-
   body_generation(Generation, Body),
 
   photo_body(body_generation(Generation, Body), Photo),
+
+  doors(Doors),
   number_of_doors(body_generation(Generation, Body), Doors),
 
   transmission(Transmission),
   transmission_body(body_generation(Generation, Body), Transmission),
+
+  fuel(Fuel),
+  fuel_body(transmission_body(body_generation(Generation, Body), Transmission), Fuel),
 
   Car = _{
     brand:Brand,
@@ -18,8 +23,9 @@ get_car(Car):-
     generation:Generation, 
     body:Body,
     doors:Doors,
+    photo:Photo,
     transmission:Transmission,
-    photo:Photo
+    fuel:Fuel
   }.
 
 find_car(Value, Property, Car):-
@@ -46,10 +52,13 @@ find_car(Value, Property, Car):-
       Value = Car.transmission
   ).
 
+test_car(Car):-
+  transmission_body(body_generation(Generation, Body), Transmission),
+  fuel_body(transmission_body(body_generation(Generation, Body), Transmission), Fuel),
 
-% show_test:-
-%   forall(
-%     transmission_body(body_generation(Generation, Body), Transmission), 
-%     % writeln(body_generation(Generation, Body), Transmission)
-%     writeln(body_generation(Generation, Body), Transmission)
-%   ).
+  Car = _{
+    generation:Generation, 
+    body:Body,
+    transmission:Transmission,
+    fuel:Fuel
+  }.
