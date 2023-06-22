@@ -1,31 +1,25 @@
-:- consult("./dynamic/knowledge/carsDynamic.pl").
+:- consult("./base/knowledge/carsDynamic.pl").
 
 get_car(Car):-
   brand(Brand),
   model(Brand, Model),
   generation(Model, Generation),
+  body(Body),
   body_generation(Generation, Body),
-
   photo_body(body_generation(Generation, Body), Photo),
-
   doors(Doors),
   number_of_doors(body_generation(Generation, Body), Doors),
-
-  transmission(Transmission),
-  transmission_body(body_generation(Generation, Body), Transmission),
-
-  fuel(Fuel),
-  fuel_body(transmission_body(body_generation(Generation, Body), Transmission), Fuel),
+  % transmission(Transmission),
+  % transmission_body(body_generation(Generation, Body), Transmission),
 
   Car = _{
     brand:Brand,
     model: Model,
     generation:Generation, 
     body:Body,
+    % transmission:Transmission,
     doors:Doors,
-    photo:Photo,
-    transmission:Transmission,
-    fuel:Fuel
+    photo:Photo
   }.
 
 find_car(Value, Property, Car):-
@@ -51,3 +45,7 @@ find_car(Value, Property, Car):-
     Property == 'transmission' ->
       Value = Car.transmission
   ).
+
+
+show_cars:-
+  forall(get_car(Car), writeln(Car)).
