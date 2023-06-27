@@ -21,14 +21,14 @@ get_column(TableName, Column):-
 get_columns(TableName, Columns):-
   findall(Column, get_column(TableName, Column), Columns).
 
-select(TableTableName, Data):-
-  concat('SELECT * FROM ', TableTableName, Query),
+select(TableName, Data):-
+  concat('SELECT * FROM ', TableName, Query),
   odbc_query('db',Query, Row),
   Row =.. [_|Data].
 
-get_json(TableTableName, Json):-
-  get_columns(TableTableName, Keys),
-  select(TableTableName, Values),
+get_json(TableName, Json):-
+  get_columns(TableName, Keys),
+  select(TableName, Values),
   pairs_keys_values(Data, Keys, Values),
   dict_create(Json, _, Data).
 
