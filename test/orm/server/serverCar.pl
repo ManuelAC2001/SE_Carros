@@ -5,7 +5,6 @@
 :- use_module(library(http/http_cors)).
 :- use_module(library(http/http_header)).
 :- use_module(library(http/http_client)).
-:- use_module(library(http/json)).
 
 :- consult("./test/orm/server/routes/routesCar.pl").
 
