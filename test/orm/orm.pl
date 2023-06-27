@@ -1,5 +1,6 @@
 :- use_module(library(odbc)).
 
+
 connect :- 
   Credentials = [
     user('root'), 
@@ -73,7 +74,6 @@ photo(body(Generation, Body), Photo):-
   CarPhoto.part_category_id == Category.id,
 
   Photo = _{
-    id: CarPhoto.id,
     src:CarPhoto.src,
     category:Category.category
   }. 
@@ -110,7 +110,6 @@ car(Car):-
     photo(body(Generation, Body), Photo), 
     Photos
   ),
-
 
   Car = _{
     brand:Brand.name,
